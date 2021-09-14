@@ -1,6 +1,6 @@
 const Pool = require("pg").Pool;
 const pool = new Pool({
-  user: "edward",
+  user: "danroche",
   host: "localhost",
   database: "acebook",
   password: null,
@@ -8,6 +8,8 @@ const pool = new Pool({
 });
 
 const getPosts = (request, response) => {
+
+  console.log("query")
   pool.query("SELECT * FROM posts ORDER BY id ASC", (error, results) => {
     if (error) {
       throw error;
