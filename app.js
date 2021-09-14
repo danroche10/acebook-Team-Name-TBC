@@ -3,9 +3,7 @@ const cookieParser = require("cookie-parser");
 const app = express();
 const port = 3000;
 
-const db = require("./queries");
-
-const postsRouter = require('./routes/posts')
+const postsRouter = require("./routes/posts");
 
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
@@ -22,5 +20,4 @@ app.listen(port, () => {
 });
 
 // route setup
-app.use('/posts', postsRouter)
-
+app.use("/posts", postsRouter);
