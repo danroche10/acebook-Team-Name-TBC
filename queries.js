@@ -8,8 +8,6 @@ const pool = new Pool({
 });
 
 const getPosts = (request, response) => {
-
-  console.log("query")
   pool.query("SELECT * FROM posts ORDER BY id ASC", (error, results) => {
     if (error) {
       throw error;
