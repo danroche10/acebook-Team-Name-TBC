@@ -6,7 +6,7 @@ In `psql` run the following query:
 
 ```
 CREATE DATABASE acebook;
-CREATE TABLE posts(id SERIAL PRIMARY KEY, message VARCHAR(400))
+CREATE TABLE posts(id SERIAL PRIMARY KEY, message VARCHAR(400));
 ```
 
 You might want to create a test message:
@@ -39,3 +39,25 @@ To run the app, run the following command:
 `node app.js`
 
 Visit http://localhost:3000/
+
+## Writting tests
+
+You MUST include `test.js` on any file you want to write tests in.
+
+Make sure to use the old `import/export` syntax. Doesn't work at the moment with ES6.
+
+## Running tests with jest
+
+Run `npm install --save-dev jest` in the command line.
+Add the following section to your `package.json`:
+
+```
+{
+  "scripts": {
+    "test": "jest"
+  }
+}
+```
+
+In the command line run `npm test`.
+
