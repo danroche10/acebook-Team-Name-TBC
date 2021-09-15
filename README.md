@@ -24,6 +24,18 @@ Clone this repo and navigate to its directory.
 
 `npm install`
 
-Change the database settings in `database/connection.js` to match your own: typically this involves changing the `user` name.
+In the root directory of the project create a file called `.env` and copy the following (adapt where required):
+
+```
+DB_USER=<your_psql_name>
+DB_HOST=localhost
+DB_DATABASE=acebook
+DB_PASSWORD=null
+DB_PORT=5432
+```
+
+To run the app, run the following command:
 
 `node app.js`
+
+Visit http://localhost:3000/
