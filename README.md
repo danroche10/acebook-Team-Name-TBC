@@ -6,7 +6,7 @@ In `psql` run the following query:
 
 ```
 CREATE DATABASE acebook;
-CREATE TABLE posts(id SERIAL PRIMARY KEY, message VARCHAR(400))
+CREATE TABLE posts(id SERIAL PRIMARY KEY, message VARCHAR(400));
 ```
 
 You might want to create a test message:

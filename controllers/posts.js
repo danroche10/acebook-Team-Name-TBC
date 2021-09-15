@@ -5,5 +5,8 @@ const PostsController = {
     let posts = await Post.getPosts();
     res.send({ posts: posts });
   },
+  Show: async function (req, res) {
+    res.json({ info: "Hello show posts router :)" });
+  }
 };
 module.exports = PostsController;
