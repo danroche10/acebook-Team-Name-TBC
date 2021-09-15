@@ -2,9 +2,9 @@ const Post = require("../model/posts");
 
 const PostsController = {
   Index: async function (req, res) {
-    let data = await Post.getPosts();
-    // console.log(data);
-    res.send(data);
+    let posts = await Post.getPosts();
+    // console.log({posts; posts});
+    res.send({ posts: posts });
   },
 };
 module.exports = PostsController;
