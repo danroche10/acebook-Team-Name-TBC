@@ -10,7 +10,6 @@ const port = 3000;
 const homeRouter = require("./routes/home");
 const postsRouter = require("./routes/posts");
 const signupRouter = require("./routes/signup");
-const postsRouter = require('./routes/posts');
 
 // view engine setup
 app.set("views", path.join(__dirname, "views"));
