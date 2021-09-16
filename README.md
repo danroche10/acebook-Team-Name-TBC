@@ -40,7 +40,7 @@ To run the app, run the following command:
 
 Visit http://localhost:3000/
 
-## Writting tests
+## Writting tests with Jest
 
 You MUST include `test.js` on any file you want to write tests in.
 
@@ -61,3 +61,22 @@ Add the following section to your `package.json`:
 
 In the command line run `npm test`.
 
+## installing Cypress
+
+Enter into the command line `npm install cypress --save-dev`.
+This will install Cypress and save it to your package.json dependencies.
+
+Add this to your package.json file.
+```
+{
+  "scripts": {
+    "cypress:open": "cypress open"
+  }
+}
+```
+When you run `npm run cypress:open` it will open Cypress and allow you to pick and choose which tests to run, or all.
+
+### Writting tests in Cypress
+
+When writting tests either `_spec.js` or `.test.js` works.
+Store these files in `<project-name>/cypress/integration`.
