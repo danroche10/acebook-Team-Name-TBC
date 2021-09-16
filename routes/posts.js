@@ -1,6 +1,15 @@
 const express = require('express')
-const router = express.Router();
+const postsRouter = express.Router();
 
 const PostsController = require('../controllers/posts')
-router.get('/', PostsController.Index);
+
+postsRouter.post('/id/comment/new', PostsController.NewComment);
+postsRouter.post('/id/like/new', PostsController.NewLike);
+postsRouter.get('/id', PostsController.Show);
+postsRouter.get('/', PostsController.Index);
+postsRouter.post('/new', PostsController.New);
+
+module.exports = postsRouter;
+
 module.exports = router;
+
