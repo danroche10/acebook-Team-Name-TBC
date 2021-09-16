@@ -56,3 +56,46 @@ To run the app, run the following command:
 `nodemon app.js`
 
 Visit http://localhost:3000/
+
+## Writting tests with Jest
+
+You MUST include `test.js` on any file you want to write tests in.
+
+Make sure to use the old `import/export` syntax. Doesn't work at the moment with ES6.
+
+## Running tests with jest
+
+Run `npm install --save-dev jest` in the command line.
+Add the following section to your `package.json`:
+
+```
+{
+  "scripts": {
+    "test": "jest"
+  }
+}
+```
+
+In the command line run `npm test`.
+
+## installing Cypress
+
+if you have run `npm install`.
+
+Enter into the command line `npm install cypress --save-dev`.
+This will install Cypress and save it to your package.json dependencies.
+
+Add this to your package.json file.
+```
+{
+  "scripts": {
+    "cypress:open": "cypress open"
+  }
+}
+```
+When you run `npm run cypress:open` it will open Cypress and allow you to pick and choose which tests to run, or all.
+
+### Writting tests in Cypress
+
+When writting tests either `_spec.js` or `.test.js` works.
+Store these files in `<project-name>/cypress/integration`.
