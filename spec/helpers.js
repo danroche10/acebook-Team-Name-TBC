@@ -1,1 +1,1 @@
-console.log('helpers accessed');
+process.env['VARIABLE'] = 'value';
