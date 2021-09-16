@@ -11,3 +11,5 @@ postsRouter.post('/new', PostsController.New);
 
 module.exports = postsRouter;
 
+module.exports = router;
+
