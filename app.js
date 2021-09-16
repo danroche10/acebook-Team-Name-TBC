@@ -13,11 +13,11 @@ app.use(cookieParser());
 
 // route setup
 app.get("/", (request, response) => {
-  response.json({ info: "Node.js, Express, and Postgres API" });
+	response.json({ info: "Node.js, Express, and Postgres API, nodemon" });
 }); // this will need homeRouter
 
 app.use("/posts", postsRouter);
 
 app.listen(port, () => {
-  console.log(`App running on port ${port}.`);
+	console.log(`App running on port ${port}.`);
 });

@@ -1,4 +1,4 @@
-##Acebook
+## Acebook
 
 # Create Test Database
 
@@ -16,7 +16,7 @@ SELECT * FROM posts;
 INSERT INTO posts(message) VALUES('this is our first message');
 ```
 
-## Install and run program
+## Install and run program (for development)
 
 Make sure you are using node version 14.17.6 (lts)
 
@@ -34,8 +34,12 @@ DB_PASSWORD=null
 DB_PORT=5432
 ```
 
+To install nodemon on your machine, run the following command:
+
+`npm install -g nodemon`
+
 To run the app, run the following command:
 
-`node app.js`
+`nodemon app.js`
 
 Visit http://localhost:3000/
