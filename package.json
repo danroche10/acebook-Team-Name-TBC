@@ -30,6 +30,6 @@
     "nodemon": "^2.0.12"
   },
   "jest": {
-    "setupFiles": ["<rootDir>spec/helpers.js"]
+    "setupFiles": ["<rootDir>spec/helpers.js", "dotenv/config"]
 } 
 }

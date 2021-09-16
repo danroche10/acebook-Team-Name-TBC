@@ -1,17 +1,31 @@
 const Pool = require('pg').Pool;
 
-// can we pass different db/test db names to line 5 param?)
+let dbInfo;
 
-const pool = new Pool({
+const testDb = {
   user: process.env.DB_USER,
   host: process.env.DB_HOST,
-  database: process.env.DB_DATABASE, // if env variable is test, change this
+  database: process.env.DB_TEST_DATABASE,
   password: process.env.DB_PASSWORD,
   port: process.env.DB_PORT,
-});
+};
+
+const db = {
+  user: process.env.DB_USER,
+  host: process.env.DB_HOST,
+  database: process.env.DB_DATABASE,
+  password: process.env.DB_PASSWORD,
+  port: process.env.DB_PORT,
+};
+
+if (process.env.TEST === 'test') {
+  dbInfo = testDb;
+} else {
+  dbInfo = db;
+}
+
+const pool = new Pool(dbInfo);
 
 module.exports.pool = pool;
-
-// create a global set up module that runs before jest tests and sets env variable to test
 
 // truncate db if env variable is test - do this here, or in globalsetup?

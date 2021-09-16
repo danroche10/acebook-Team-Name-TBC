@@ -1,1 +1,1 @@
-process.env['VARIABLE'] = 'value';
+process.env['TEST'] = 'test';
