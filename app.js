@@ -1,4 +1,4 @@
-require("dotenv").config();
+require('dotenv').config();
 
 const express = require("express");
 const path = require("path");
@@ -7,7 +7,7 @@ const cookieParser = require("cookie-parser");
 const app = express();
 const port = 3000;
 
-const postsRouter = require("./routes/posts");
+const postsRouter = require('./routes/posts');
 
 // view engine setup
 app.set("views", path.join(__dirname, "views"));
@@ -22,7 +22,7 @@ app.get("/", (request, response) => {
 	response.json({ info: "Node.js, Express, and Postgres API, nodemon" });
 }); // this will need homeRouter
 
-app.use("/posts", postsRouter);
+app.use('/posts', postsRouter);
 
 app.listen(port, () => {
 	console.log(`App running on port ${port}.`);
