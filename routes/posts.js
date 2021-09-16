@@ -10,6 +10,3 @@ postsRouter.get('/', PostsController.Index);
 postsRouter.post('/new', PostsController.New);
 
 module.exports = postsRouter;
-
-module.exports = router;
-
