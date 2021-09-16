@@ -19,9 +19,9 @@ app.get("/", (request, response) => {
 });
 
 // route paths to match excel file
-app.use("/acebook", homeRouter);
-app.use("/acebook/posts", postsRouter);
-app.use("/acebook/signup", signupRouter);
+app.use("/", homeRouter);
+app.use("/posts", postsRouter);
+app.use("/signup", signupRouter);
 
 app.listen(port, () => {
   console.log(`App running on port ${port}.`);
