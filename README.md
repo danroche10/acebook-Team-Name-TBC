@@ -16,9 +16,16 @@ You might want to create some test data:
 
 ```
 INSERT INTO users(username, password, email) VALUES('dandelion', 'Password1', 'test@test.com');
-INSERT INTO posts(text, user_id) VALUES('this is our first post', 1);
+SELECT * FROM users;
+
+INSERT INTO posts(text, created_at, user_id) VALUES('this is our first post', current_timestamp, 1);
+SELECT * FROM posts;
+
 INSERT INTO comments(text, post_id, user_id) VALUES('this is the first comment', 1, 1);
+SELECT * FROM comments;
+
 INSERT INTO likes(post_id, user_id) VALUES(1, 1);
+SELECT * FROM likes;
 
 ```
 
