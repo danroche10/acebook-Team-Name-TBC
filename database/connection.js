@@ -1,5 +1,7 @@
 const Pool = require('pg').Pool;
 
+// can we pass different db/test db names to line 5 param?)
+
 const pool = new Pool({
   user: process.env.DB_USER,
   host: process.env.DB_HOST,
