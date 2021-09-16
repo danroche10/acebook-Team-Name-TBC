@@ -18,7 +18,7 @@ app.get("/", (request, response) => {
   response.json({ info: "Node.js, Express, and Postgres API" });
 });
 
-
+// route paths to match excel file
 app.use("/acebook", homeRouter);
 app.use("/acebook/posts", postsRouter);
 app.use("/acebook/signup", signupRouter);
