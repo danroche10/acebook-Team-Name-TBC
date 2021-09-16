@@ -6,7 +6,10 @@ In `psql` run the following query:
 
 ```
 CREATE DATABASE acebook;
-CREATE TABLE posts(id SERIAL PRIMARY KEY, message VARCHAR(400));
+CREATE TABLE users(id SERIAL PRIMARY KEY, username VARCHAR(200), password VARCHAR(200), email VARCHAR(200), photo_url VARCHAR(400) DEFAULT null);
+CREATE TABLE posts(id SERIAL PRIMARY KEY, message VARCHAR(200), created_at TIMESTAMP, user_id integer REFERENCES users(id));
+CREATE TABLE likes(id SERIAL PRIMARY KEY, post_id integer REFERENCES posts(id), user_id integer REFERENCES users(id));
+
 ```
 
 You might want to create a test message:
@@ -14,6 +17,7 @@ You might want to create a test message:
 ```
 SELECT * FROM posts;
 INSERT INTO posts(message) VALUES('this is our first message');
+
 ```
 
 ## Install and run program
