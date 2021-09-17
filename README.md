@@ -93,3 +93,8 @@ When you run `npm run cypress:open` it will open Cypress and allow you to pick a
 
 When writing tests, include `_spec.js` on the end of the test file.
 Store these files in `<project-name>/cypress/integration`.
+
+### Running tests with Cypress
+
+**IMPORTANT**
+When running cypress tests, make sure you are running your localhost in tandem!
