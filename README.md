@@ -1,6 +1,6 @@
 ## Acebook
 
-# Create Test Database
+# Create Database
 
 In `psql` or `TablePlus` run the following query:
 
@@ -15,26 +15,27 @@ CREATE TABLE likes(id SERIAL PRIMARY KEY, post_id integer REFERENCES posts(id), 
 You might want to create some test data:
 
 ```
-INSERT INTO users(username, password, email) VALUES('dandelion', 'Password1', 'test@test.com');
+INSERT INTO users(username, password, email) VALUES("dandelion", "Password1", "test@test.com");
 SELECT * FROM users;
 
-INSERT INTO posts(text, created_at, user_id) VALUES('this is our first post', current_timestamp, 1);
+INSERT INTO posts(text, created_at, user_id) VALUES("this is our first post", current_timestamp, 1);
 SELECT * FROM posts;
 
-INSERT INTO comments(text, post_id, user_id) VALUES('this is the first comment', 1, 1);
+INSERT INTO comments(text, post_id, user_id) VALUES("this is the first comment", 1, 1);
 SELECT * FROM comments;
 
 INSERT INTO likes(post_id, user_id) VALUES(1, 1);
 SELECT * FROM likes;
-
 ```
+
 # Create Test Database
 
-Make sure you add the following command to your .env file:
+REMINDER: make sure the following is in your `.env` file:
 
 ```
 DB_TEST_DATABASE=acebook_test
 ```
+
 In `psql` or `TablePlus` run the following query:
 
 ```
@@ -43,21 +44,6 @@ CREATE TABLE users(id SERIAL PRIMARY KEY, username VARCHAR(200), password VARCHA
 CREATE TABLE posts(id SERIAL PRIMARY KEY, text VARCHAR(200), created_at TIMESTAMP DEFAULT now(), user_id integer REFERENCES users(id));
 CREATE TABLE comments(id SERIAL PRIMARY KEY, text VARCHAR(200), post_id integer REFERENCES posts(id), user_id integer REFERENCES users(id), created_at TIMESTAMP DEFAULT now());
 CREATE TABLE likes(id SERIAL PRIMARY KEY, post_id integer REFERENCES posts(id), user_id integer REFERENCES users(id));
-```
-You should add some test data:
-
-```
-INSERT INTO users(username, password, email) VALUES('dandelion', 'Password1', 'test@test.com');
-SELECT * FROM users;
-
-INSERT INTO posts(text, created_at, user_id) VALUES('this is our first post', current_timestamp, 1);
-SELECT * FROM posts;
-
-INSERT INTO comments(text, post_id, user_id) VALUES('this is the first comment', 1, 1);
-SELECT * FROM comments;
-
-INSERT INTO likes(post_id, user_id) VALUES(1, 1);
-SELECT * FROM likes;
 ```
 
 ## Install and run program (for development)
@@ -74,6 +60,7 @@ In the root directory of the project create a file called `.env` and copy the fo
 DB_USER=<your_psql_name>
 DB_HOST=localhost
 DB_DATABASE=acebook
+DB_TEST_DATABASE=acebook_test
 DB_PASSWORD=null
 DB_PORT=5432
 ```
@@ -102,7 +89,7 @@ Run `npm test`.
 
 When you run `npm run cypress:open` it will open Cypress and allow you to pick and choose which tests to run, or all.
 
-### Writting tests in Cypress
+### Writing tests in Cypress
 
-When writting tests, include `_spec.js` on the end of the test file.
+When writing tests, include `_spec.js` on the end of the test file.
 Store these files in `<project-name>/cypress/integration`.

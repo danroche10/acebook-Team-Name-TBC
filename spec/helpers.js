@@ -1,2 +1,1 @@
 process.env['TEST'] = 'test';
-

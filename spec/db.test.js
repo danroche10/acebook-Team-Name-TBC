@@ -1,12 +1,22 @@
-const { pool } = require('../database/connection'); // this is essential if you are testing anything to do with the database
-const Post = require('../model/posts');
+const PostsController = require('../controllers/posts');
+const { pool } = require('../database/connection'); // this is essential if your tests involve database connection
+const Post = require('../model/posts'); // put whatever you are testing here
+
+// essential to include following before and after functions if your tests involve database connection
+beforeEach(async () => {
+  await pool.query(
+    'TRUNCATE TABLE users, posts, likes, comments RESTART IDENTITY;'
+  );
+});
 
 afterEach(() => {
   pool.end();
 });
 
-test('checks test db is accessed', () => {
-  expect(Post.getPosts()).resolves.toStrictEqual([
-    { id: 1, message: 'testtesttest' },
-  ]);
+test('checks test db is accessed', async () => {
+  await pool.query(
+    "INSERT INTO users(username, password, email) VALUES('dandelion', 'Password1', 'test@test.com'); INSERT INTO posts(text, created_at, user_id) VALUES('this is our first post', current_timestamp, 1);"
+  );
+  const data = await Post.getPosts();
+  expect(data).toStrictEqual([{ id: 1, message: 'testtesttest' }]);
 });
