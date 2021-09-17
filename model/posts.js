@@ -9,12 +9,8 @@ class Post {
     allPosts.rows.forEach((element) => {
       allPostsArray.push({ id: element.id, message: element.text });
     });
-    return allPostsArray;
+    return allPostsArray.reverse();
   }
-
-  
-
-
 }
 
 module.exports = Post;
