@@ -11,6 +11,10 @@ class Post {
     });
     return allPostsArray;
   }
+
+  
+
+
 }
 
 module.exports = Post;
