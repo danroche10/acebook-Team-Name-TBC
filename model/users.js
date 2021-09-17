@@ -1,8 +1,11 @@
 const connection = require('../database/connection.js');
 
 class User {
-  static addUser() {
-    return true;
+  static async addUser(username, password, email) {
+    await connection.pool.query(
+     );
+    let user = {username: username, password: password, email: email}
+    return user;
   }
 }
 
