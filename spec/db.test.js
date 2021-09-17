@@ -1,4 +1,4 @@
-const { pool } = require('../database/connection');
+const { pool } = require('../database/connection'); // this is essential if you are testing anything to do with the database
 const Post = require('../model/posts');
 
 test('checks test db is accessed', () => {
