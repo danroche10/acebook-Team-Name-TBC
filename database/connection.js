@@ -25,7 +25,8 @@ if (process.env.TEST === 'test') {
 }
 
 const pool = new Pool(dbInfo);
-
 module.exports.pool = pool;
 
 // truncate db if env variable is test - do this here, or in globalsetup?
+// update readme to include env info - add that 1 line - info on create database
+// can we create something that will automatically close the pool when the test is run 
