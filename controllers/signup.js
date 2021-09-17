@@ -2,10 +2,10 @@ const User = require('../model/users');
 
 const signupController = {
   async Index(req, res) {
-    res.json({ info: 'Hello sign up router!' });
+    res.render("signup/index");
   },
   async NewUser(req, res) {
-    await User.addUser();
+    User.addUser();
     res.json({ info: 'Hello new user sign up post router!' });
   },
 };
