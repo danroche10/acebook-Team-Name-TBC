@@ -28,5 +28,11 @@
     "cypress": "^8.4.0",
     "jest": "^27.2.0",
     "nodemon": "^2.0.12"
+  },
+  "jest": {
+    "setupFiles": [
+      "<rootDir>spec/helpers.js",
+      "dotenv/config"
+    ]
   }
 }
