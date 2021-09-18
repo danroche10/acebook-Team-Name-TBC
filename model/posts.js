@@ -11,6 +11,16 @@ class Post {
     });
     return allPostsArray;
   }
+
+  static async getPosts() {
+    
+    let allPosts = await connection.pool.query(
+      'SELECT * FROM posts ORDER BY id ASC'
+    );
+   
+    };
+  
+  
 }
 
 module.exports = Post;
