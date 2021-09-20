@@ -10,7 +10,7 @@ class Post {
       allPostsArray.push({
         id: element.id,
         message: element.text,
-        user_id: element.user_id, // have added this for likes function
+        //user_id: element.user_id, // have added this for likes function
       });
     });
     return allPostsArray.reverse();
