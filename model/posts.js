@@ -9,7 +9,7 @@ class Post {
     allPosts.rows.forEach((element) => {
       allPostsArray.push({ id: element.id, message: element.text });
     });
-    return allPostsArray;
+    return allPostsArray.reverse();
   }
 
   static async addPost(text, user_id) {
