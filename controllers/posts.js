@@ -11,11 +11,14 @@ const PostsController = {
     res.json({ info: 'Hello show posts router :)' });
   },
   New: async function (req, res) {
+    try {
     // temporary workaround till user login - req.body.user_id
-    Post.addPost(req.body.text, req.body.user_id);
-    res.redirect(302, '/posts/'); // could use res.redirect('back') as it does the same
+    await Post.addPost(req.body.text, req.body.user_id);
+    res.redirect(302, 'back'); // could use res.redirect('back') as it does the same
+    } catch (error) {
+      console.log(error);
+    }
   },
-
   NewComment: async function (req, res) {
     res.json({ info: 'Hello new comment post router :)' });
   },
