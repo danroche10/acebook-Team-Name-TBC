@@ -20,6 +20,7 @@ const PostsController = {
     }
   },
   NewComment: async function (req, res) {
+    
     res.json({ info: 'Hello new comment post router :)' });
   },
   NewLike: async function (req, res) {

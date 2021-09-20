@@ -7,7 +7,7 @@ class Comment {
       'SELECT * FROM comments WHERE post_id = $1',
       [post_id]
     );
-    console.log('allComments', allComments);
+    
     allComments.rows.forEach((element) =>
       allCommentArray.push({
         id: element.id,
@@ -15,7 +15,6 @@ class Comment {
         user_id: element.user_id,
       })
     );
-    console.log('array', allCommentArray);
     return allCommentArray;
   }
 
