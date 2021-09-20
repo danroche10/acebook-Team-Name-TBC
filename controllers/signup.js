@@ -1,9 +1,19 @@
+const User = require('../model/users');
+
 const signupController = {
-  Index: async function (req, res) {
-    res.json({ info: "Hello sign up router!" });
+  async Index(req, res) {
+    res.render('signup/index');
   },
-  NewUser: async function (req, res) {
-    res.json({ info: "Hello new user sign up post router!" });
+  async NewUser(req, res) {
+    try {
+      const { newHandle } = req.body;
+      const { newPassword } = req.body;
+      const { newEmail } = req.body;
+      User.addUser(newHandle, newPassword, newEmail);
+      res.redirect('/posts');
+    } catch (error) {
+      return res.status(500).json({ error: error.message });
+    }
   },
 };
 module.exports = signupController;
