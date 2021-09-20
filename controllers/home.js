@@ -1,9 +1,17 @@
+const User = require('../model/users');
+
 const HomeController = {
-  Index: async function (req, res) {
-    res.json({ info: "Hello home router" });
+  async Index(req, res) {
+    res.render('home/index');
   },
-  Login: async function (req, res) {
-    res.json({ info: "Hello login post router" });
-  }
+  async Login(req, res) {
+    const username = req.body.user_name;
+    const password = req.body.user_password;
+    const isUserAuthenticated = await User.authenticate(username, password);
+    if (isUserAuthenticated === false) {
+      res.redirect('/');
+    }
+    res.redirect('/posts');
+  },
 };
 module.exports = HomeController;
