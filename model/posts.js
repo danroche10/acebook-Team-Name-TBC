@@ -11,6 +11,14 @@ class Post {
     });
     return allPostsArray.reverse();
   }
+
+  static async addPost(text, user_id) {
+    let post = await connection.pool.query(
+      'INSERT INTO posts (text, user_id) VALUES ($1, $2) ;',
+      [text, user_id]
+    );
+    return post;
+  }
 }
 
 module.exports = Post;
