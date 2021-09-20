@@ -13,11 +13,13 @@ afterEach(() => {
   pool.end();
 });
 
-test('checks test db is accessed', async () => {
+test('checks post can be added', async () => {
   await pool.query(
     "INSERT INTO users(username, password, email) VALUES('dandelion', 'Password1', 'test@test.com');"
   );
-  await pool.query(Post.addPost('This is testing adding a post', 1));
+  await Post.addPost('This is testing adding a post', 1);
   const data = await Post.getPosts();
-  expect(data).toStrictEqual([{ id: 1, message: 'testtesttest' }]);
+  expect(data).toStrictEqual([
+    { id: 1, message: 'This is testing adding a post' },
+  ]);
 });

@@ -12,15 +12,13 @@ class Post {
     return allPostsArray;
   }
 
-  static async getPosts() {
-    
-    let allPosts = await connection.pool.query(
-      'SELECT * FROM posts ORDER BY id ASC'
+  static async addPost(text, user_id) {
+    let post = await connection.pool.query(
+      'INSERT INTO posts (text, user_id) VALUES ($1, $2) ;',
+      [text, user_id]
     );
-   
-    };
-  
-  
+    return post;
+  }
 }
 
 module.exports = Post;

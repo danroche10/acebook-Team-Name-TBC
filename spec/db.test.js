@@ -20,5 +20,3 @@ test('checks test db is accessed', async () => {
   const data = await Post.getPosts();
   expect(data).toStrictEqual([{ id: 1, message: 'testtesttest' }]);
 });
-
-
