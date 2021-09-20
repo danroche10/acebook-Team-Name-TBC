@@ -1,6 +1,21 @@
 <h1>Posts</h1>
-<ul class="posts">
+
+<form action='/posts/new' method='POST'>
+  <input
+    type='text'
+    class='post_text'
+    placeholder="What's on your mind?"
+    name='text'
+  />
+  <!-- temporary workaround till user login -->
+  <input type='number' class='user_id' placeholder='userid' name='user_id' />
+  <!-- temporary workaround till user login -->
+
+  <input type='submit' value='Submit' />
+</form>
+
+<ul class='posts_list'>
   {{#each posts}}
-    <li>{{this.message}}</li>
+    <li class='posts'>{{this.message}}</li>
   {{/each}}
 </ul>
