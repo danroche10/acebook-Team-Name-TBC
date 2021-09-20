@@ -9,8 +9,8 @@ beforeEach(async () => {
   );
 });
 
-afterEach(() => {
-  pool.end();
+afterEach(async () => {
+  await pool.end();
 });
 
 test('checks test db is accessed', async () => {
