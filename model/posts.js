@@ -7,7 +7,11 @@ class Post {
       'SELECT * FROM posts ORDER BY id ASC'
     );
     allPosts.rows.forEach((element) => {
-      allPostsArray.push({ id: element.id, message: element.text });
+      allPostsArray.push({
+        id: element.id,
+        message: element.text,
+        user_id: element.user_id, // have added this for likes function
+      });
     });
     return allPostsArray.reverse();
   }
