@@ -1,6 +1,7 @@
 const { request } = require('express');
 const Post = require('../model/posts');
 const Comment = require('../model/comments');
+const Like = require('../model/likes');
 const url = require('url');
 
 const PostsController = {
@@ -30,11 +31,14 @@ const PostsController = {
   },
   NewLike: async function (req, res) {
     try {
+      if (req.body.post_id === undefined || req.body.user_id === undefined) {
+        throw 'Parameters undefined!';
+      }
       await Like.addLike(req.body.post_id, req.body.user_id);
       res.redirect(302, 'back'); // could use res.redirect('back') as it does the same
-      } catch (error) {
-        console.log(error);
-     }
-  } 
+    } catch (error) {
+      res.redirect(302, 'back');
+    }
+  },
 };
 module.exports = PostsController;
