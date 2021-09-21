@@ -4,6 +4,7 @@ const { Connection } = require('pg');
 
 class Like {
   static async getLikeById(id) {
+    `SELECT post_id, user_id FROM likes WHERE id = ${id};`
     // sql query to find id
     // return user id, post id from that like
   }
