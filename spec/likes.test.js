@@ -11,7 +11,7 @@ afterEach(() => {
   pool.end();
 });
 
-test('likes', async () => {
+test('add and get like', async () => {
   await pool.query(
     "INSERT INTO users(username, password, email) VALUES('dandelion', 'Password1', 'test@test.com');"
   );

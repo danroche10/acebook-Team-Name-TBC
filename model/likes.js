@@ -4,9 +4,10 @@ const { Connection } = require('pg');
 
 class Like {
   static async getLikeById(id) {
-    `SELECT post_id, user_id FROM likes WHERE id = ${id};`
-    // sql query to find id
-    // return user id, post id from that like
+    let like = await connection.pool.query(
+      `SELECT post_id, user_id FROM likes WHERE id = ${id};`
+    );
+    return like.rows[0];
   }
 
   static async addLike(post_id, user_id) {
