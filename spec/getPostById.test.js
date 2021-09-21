@@ -13,13 +13,15 @@ afterEach(() => {
   pool.end();
 });
 
-test('checks post can be added', async () => {
+test('checks a single post is retrieved', async() => {
   await pool.query(
     "INSERT INTO users(username, password, email) VALUES('dandelion', 'Password1', 'test@test.com');"
-  );
-  await Post.addPost('This is testing adding a post', 1);
-  const data = await Post.getPosts();
-  expect(data).toStrictEqual([
-    { id: 1, message: 'This is testing adding a post' },
-  ]);
-});
+  )
+  await Post.addPost('This is our test retrieving post', 1); 
+  await Post.addPost('This is our second test retrieving post', 1);
+  const post_id = 1 
+  const post = await Post.getPostById(post_id)
+  expect(post).toStrictEqual([
+    {id: 1, message: 'This is our test retrieving post'}])
+})
+

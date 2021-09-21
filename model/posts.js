@@ -19,6 +19,19 @@ class Post {
     );
     return post;
   }
+
+  static async getPostById(post_id) {
+    let individualPostArray = []
+    let individualPost = await connection.pool.query(
+      'SELECT * FROM posts WHERE id = $1',[post_id]
+    );
+    individualPost.rows.forEach((element) => {
+      individualPostArray.push({ id: element.id, message: element.text });
+    });
+    return individualPostArray
+  }
 }
+
+
 
 module.exports = Post;
