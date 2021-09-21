@@ -1,7 +1,19 @@
 <h1>Post</h1>
+
 {{#each post}}
   <div id='{{this.id}}'>{{this.message}}</div>
 {{/each}}
+
+<form action = 'id/comment/new' method='POST'>
+<input type ='text' class ='comment' placeholder ='What do you want to comment?' name = 'text'/>
+<!-- temporary workaround till user login -->
+  <input type='number' class='user_id' placeholder='userid' name='user_id' />
+<!-- temporary workaround till user login -->
+<input type='hidden' value='{{this.id}} name='post_id'/>
+<input type ='submit' value='Submit'/>
+</form>
+
+
 {{#each comments}}
   <div id='{{this.id}}'>{{this.comment}}</div>
 {{/each}}
