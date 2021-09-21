@@ -7,7 +7,7 @@
     "start": "nodemon app.js",
     "test": "jest",
     "cypress:open": "cypress open"
-    },
+  },
   "keywords": [],
   "author": "",
   "license": "ISC",
