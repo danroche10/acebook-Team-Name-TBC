@@ -23,7 +23,12 @@ const PostsController = {
     res.json({ info: 'Hello new comment post router :)' });
   },
   NewLike: async function (req, res) {
-    res.json({ info: 'Hello new like post router :)' });
-  },
+    try {
+      await Like.addLike(req.body.post_id, req.body.user_id);
+      res.redirect(302, 'back'); // could use res.redirect('back') as it does the same
+      } catch (error) {
+        console.log(error);
+     }
+  } 
 };
 module.exports = PostsController;
