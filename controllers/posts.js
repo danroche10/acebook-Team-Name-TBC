@@ -1,20 +1,21 @@
 const { request } = require('express');
+const url = require('url');
 const Post = require('../model/posts');
 const Comment = require('../model/comments');
-const url = require('url');
 
 const PostsController = {
   //  let's change away from req, res as this is old syntax (I think)
   async Index(req, res) {
+    // username and userId to be user for comment and posts
     const posts = await Post.getPosts();
     res.render('posts/index', { posts });
   },
-  Show: async function (req, res) {
+  async Show(req, res) {
     post_id = req.url;
     post_id = post_id.split('/')[1];
-    let post = await Post.getPostById(post_id);
-    let comments = await Comment.getComments(post_id);
-    res.render('posts/id', { post: post, comments: comments });
+    const post = await Post.getPostById(post_id);
+    const comments = await Comment.getComments(post_id);
+    res.render('posts/id', { post, comments });
   },
   async New(req, res) {
     try {
@@ -26,9 +27,11 @@ const PostsController = {
     }
   },
   async NewComment(req, res) {
+    const { username, userId } = req.query;
     res.json({ info: 'Hello new comment post router :)' });
   },
   async NewLike(req, res) {
+    const { username, userId } = req.query;
     res.json({ info: 'Hello new like post router :)' });
   },
 };
