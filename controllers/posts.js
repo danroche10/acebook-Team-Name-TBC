@@ -1,4 +1,5 @@
 const { request } = require('express');
+const url = require('url');
 const Post = require('../model/posts');
 const Comment = require('../model/comments');
 const Like = require('../model/likes');
@@ -6,18 +7,19 @@ const url = require('url');
 
 const PostsController = {
   //  let's change away from req, res as this is old syntax (I think)
-  Index: async function (req, res) {
-    let posts = await Post.getPosts();
-    res.render('posts/index', { posts: posts });
+  async Index(req, res) {
+    // username and userId to be user for comment and posts
+    const posts = await Post.getPosts();
+    res.render('posts/index', { posts });
   },
-  Show: async function (req, res) {
+  async Show(req, res) {
     post_id = req.url;
     post_id = post_id.split('/')[1];
-    let post = await Post.getPostById(post_id);
-    let comments = await Comment.getComments(post_id);
-    res.render('posts/id', { post: post, comments: comments });
+    const post = await Post.getPostById(post_id);
+    const comments = await Comment.getComments(post_id);
+    res.render('posts/id', { post, comments });
   },
-  New: async function (req, res) {
+  async New(req, res) {
     try {
       // temporary workaround till user login - req.body.user_id
       await Post.addPost(req.body.text, req.body.user_id);
@@ -26,8 +28,18 @@ const PostsController = {
       console.log(error);
     }
   },
+
   NewComment: async function (req, res) {
-    res.json({ info: 'Hello new comment post router :)' });
+    try {
+      await Comment.addComment(
+        req.body.text,
+        req.body.user_id,
+        req.body.post_id
+      );
+      res.redirect(302, 'back');
+    } catch (error) {
+      console.log(error);
+    }
   },
   NewLike: async function (req, res) {
     console.log('our request:', req);
