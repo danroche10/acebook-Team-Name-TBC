@@ -20,7 +20,7 @@ route:
 post request [including post id, user id] on http://localhost:3000/posts/id/like
 
 sent to controller/model
-which checks if like already exists in like table and performs logic;
+which checks if like already exists in like table - if it exists, at this stage do not allow another like
 
 if if user like on post doesn't exist in database) = add LIKE to DB
 
