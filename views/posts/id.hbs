@@ -1,12 +1,18 @@
 <h1>Post</h1>
 {{#each post}}
   <div id='{{this.id}}'>{{this.message}}</div>
-  <form action="/id/like/new" method="post" id="likeButton">
-  <input type="text" id="user" name="user"><br>
-  <input type="text" id="post" name="post"><br>
-  <button type="submit" value="Submit">Like</button>
+
+  <!-- like button --> 
+  <form action="/posts/id/like/new" method="post" id="likeButton">
+    <input type="text" id="user_id" name="user_id" placeholder ="User ID"><br>
+    <!-- can remove above line when user_id session is set up --> 
+    <input type="hidden" id="post_id" name="post_id" value="{{this.id}}"><br>
+    <button type="submit" value="Submit">Like</button>
   </form>
+
 {{/each}}
 {{#each comments}}
   <div id='{{this.id}}'>{{this.comment}}</div>
 {{/each}}
+
+ 

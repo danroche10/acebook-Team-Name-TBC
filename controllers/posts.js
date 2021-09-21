@@ -30,6 +30,9 @@ const PostsController = {
     res.json({ info: 'Hello new comment post router :)' });
   },
   NewLike: async function (req, res) {
+    console.log('our request:', req);
+    // user_id will be defined by session eventually so can change below as required
+    // i.e. req.body.user_id === undefined will check if session id exists or not
     try {
       if (req.body.post_id === undefined || req.body.user_id === undefined) {
         throw 'Parameters undefined!';
