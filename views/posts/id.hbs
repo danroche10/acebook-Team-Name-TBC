@@ -1,0 +1,7 @@
+<h1>Post</h1>
+{{#each post}}
+  <div id='{{this.id}}'>{{this.message}}</div>
+{{/each}}
+{{#each comments}}
+  <div id='{{this.id}}'>{{this.comment}}</div>
+{{/each}}
