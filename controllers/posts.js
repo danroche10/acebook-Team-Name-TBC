@@ -5,7 +5,6 @@ const PostsController = {
   //  let's change away from req, res as this is old syntax (I think)
   async Index(req, res) {
     const posts = await Post.getPosts();
-    console.log(req.session);
     res.render('posts/index', { posts });
   },
   async Show(req, res) {

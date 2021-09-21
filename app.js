@@ -1,11 +1,14 @@
 require('dotenv').config();
 
 const express = require('express');
+
+const app = express();
 const path = require('path');
 const cookieParser = require('cookie-parser');
 const session = require('express-session');
 
-const app = express();
+const store = new session.MemoryStore();
+app.set('trust proxy', 1);
 const port = 3000;
 
 const homeRouter = require('./routes/home');
@@ -22,9 +25,11 @@ app.use(cookieParser());
 
 app.use(
   session({
-    secret: 'secret-key',
+    secret: 'f4z4gs$Gcg',
+    cookie: { maxAge: 300000000, secure: true, sameSite: 'none' },
+    saveUninitialized: false,
     resave: false,
-    saveUninitialized: true,
+    store,
   }),
 );
 
