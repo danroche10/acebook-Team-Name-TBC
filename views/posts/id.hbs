@@ -3,13 +3,22 @@
 {{#each post}}
   <div class='single_post' id='{{this.id}}'>{{this.message}}</div>
 
-  <form action = 'id/comment/new' method='POST'>
-    <input type ='text' class ='comment' placeholder ='What do you want to comment?' name = 'text'/>
+  <form action='id/comment/new' method='POST'>
+    <textarea
+      style='resize:none'
+      type='text'
+      class='comment'
+      placeholder='What do you want to comment?'
+      name='text'
+      rows='5'
+      cols='40'
+    ></textarea>
+
     <!-- temporary workaround till user login -->
     <input type='number' class='user_id' placeholder='userid' name='user_id' />
     <!-- temporary workaround till user login -->
-    <input type='hidden' value='{{this.id}}' name='post_id'/>
-    <input type ='submit' value='Submit'/>
+    <input type='hidden' value='{{this.id}}' name='post_id' />
+    <input type='submit' value='Submit' />
   </form>
 {{/each}}
 
