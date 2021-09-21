@@ -18,5 +18,5 @@ class Like {
     return like;
   }
 }
-
+SELECT id FROM likes WHERE post_id = 3;
 module.exports = Like;
