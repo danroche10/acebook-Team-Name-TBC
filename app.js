@@ -19,6 +19,7 @@ const signupRouter = require('./routes/signup');
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'hbs');
 
+app.use(express.static(path.join(__dirname, 'public')));
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
@@ -41,3 +42,4 @@ app.use('/signup', signupRouter);
 app.listen(port, () => {
   console.log(`App running on port ${port}.`);
 });
+

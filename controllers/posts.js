@@ -26,9 +26,14 @@ const PostsController = {
       console.log(error);
     }
   },
-  async NewComment(req, res) {
-    const { username, userId } = req.query;
-    res.json({ info: 'Hello new comment post router :)' });
+
+  NewComment: async function (req, res) {
+    try {
+      await Comment.addComment(req.body.text, req.body.user_id, req.body.post_id);
+      res.redirect(302, 'back')
+    } catch (error) {
+      console.log(error)
+    }
   },
   async NewLike(req, res) {
     const { username, userId } = req.query;
