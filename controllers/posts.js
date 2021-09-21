@@ -1,5 +1,4 @@
 const { request } = require('express');
-const url = require('url');
 const Post = require('../model/posts');
 const Comment = require('../model/comments');
 const Like = require('../model/likes');
