@@ -3,6 +3,7 @@ require('dotenv').config();
 const express = require('express');
 const path = require('path');
 const cookieParser = require('cookie-parser');
+const session = require('express-session');
 
 const app = express();
 const port = 3000;
@@ -18,6 +19,14 @@ app.set('view engine', 'hbs');
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
+
+app.use(
+  session({
+    secret: 'secret-key',
+    resave: false,
+    saveUninitialized: true,
+  }),
+);
 
 // route paths to match excel file
 app.use('/', homeRouter);

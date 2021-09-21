@@ -2,6 +2,7 @@ const User = require('../model/users');
 
 const HomeController = {
   async Index(req, res) {
+    console.log(req.session);
     res.render('home/index');
   },
   async Login(req, res) {
