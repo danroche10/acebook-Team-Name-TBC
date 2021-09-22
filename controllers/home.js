@@ -1,4 +1,3 @@
-const url = require('url');
 const User = require('../model/users');
 
 const HomeController = {
@@ -10,7 +9,7 @@ const HomeController = {
       const username = req.body.user_name;
       const password = req.body.user_password;
       const isUserAuthenticated = await User.authenticate(username, password);
-      const userId = isUserAuthenticated.id;
+      const user_id = isUserAuthenticated.id;
       if (isUserAuthenticated === false) {
         res.redirect('/');
       }
@@ -19,16 +18,9 @@ const HomeController = {
       // Add the user object below:
       req.session.user = {
         username,
-        userId,
+        user_id,
       };
-      // console.log(req.session);
-      // below is short-term solution until we can properly use express-session
-      res.redirect(
-        url.format({
-          pathname: '/posts',
-          query: req.session.user,
-        })
-      );
+      res.redirect('/posts')
     } catch (error) {
       console.log('error');
     }
