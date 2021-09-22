@@ -17,6 +17,7 @@
 <ul class='posts_list'>
   {{#each posts}}
     <div
+      class='posts'
       id='{{this.id}}'
       onclick="window.location.href='/posts/{{this.id}}'"
     >{{this.message}}</div>
