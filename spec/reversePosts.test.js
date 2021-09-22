@@ -20,7 +20,6 @@ test('checks if we see most recent posts first', async () => {
     "INSERT INTO posts(text, created_at, user_id) VALUES('test2', current_timestamp, 1) ; INSERT INTO posts(text, created_at, user_id) VALUES('test3', current_timestamp, 1)"
   );
   const data = await Post.getPosts();
-  console.log(data);
   expect(data).toStrictEqual([
     { id: 3, message: 'test3' },
     { id: 2, message: 'test2' },

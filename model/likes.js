@@ -17,6 +17,13 @@ class Like {
     );
     return like;
   }
+
+  static async numberOfLikes(id) {
+    let allPostLikes = await connection.pool.query(
+      'SELECT id FROM likes WHERE post_id = $1;',
+      [id]
+    );
+    return allPostLikes.rows.length;
+  }
 }
-// SELECT id FROM likes WHERE post_id = 3;
 module.exports = Like;

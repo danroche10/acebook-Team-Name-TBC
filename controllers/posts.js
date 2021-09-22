@@ -41,7 +41,7 @@ const PostsController = {
     }
   },
   NewLike: async function (req, res) {
-    console.log('our request:', req);
+    // console.log('our request:', req);
     // user_id will be defined by session eventually so can change below as required
     // i.e. req.body.user_id === undefined will check if session id exists or not
     try {

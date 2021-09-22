@@ -1,5 +1,3 @@
-const { expect } = require('chai');
-const { test } = require('mocha');
 const { pool } = require('../database/connection');
 const Like = require('../model/likes');
 
@@ -9,7 +7,7 @@ beforeEach(async () => {
   );
 });
 
-afterEach(() => {
+afterAll(() => {
   pool.end();
 });
 
@@ -27,19 +25,18 @@ test('add and get like', async () => {
 });
 
 test('check number of likes', async () => {
-    await pool.query(
-        "INSERT INTO users(username, password, email) VALUES('friartuck', 'Password2', 'test@test.com');"
-      );
-      await pool.query(
-        "INSERT INTO users(username, password, email) VALUES('dandelion', 'Password3', 'test@test.com');"
-      );
-      await pool.query("INSERT INTO posts (text, user_id) VALUES ('Goodbye', 1);");
-      await Like.addLike(1, 1);
-      await Like.addLike(1, 2);
-      expect()
-        //insert users and post
-    // insert likes into database
-    //search database for likes
-    // expect likes to equal number inserted
-    )
-})
+  await pool.query(
+    "INSERT INTO users(username, password, email) VALUES('friartuck', 'Password2', 'test@test.com');"
+  );
+  await pool.query(
+    "INSERT INTO users(username, password, email) VALUES('dandelion', 'Password3', 'test@test.com');"
+  );
+  await pool.query("INSERT INTO posts (text, user_id) VALUES ('Goodbye', 1);");
+  await pool.query("INSERT INTO posts (text, user_id) VALUES ('hello', 1);");
+
+  await Like.addLike(1, 1);
+  await Like.addLike(1, 2);
+  await Like.addLike(2, 2);
+  let data = await Like.numberOfLikes(1);
+  expect(data).toStrictEqual(2);
+});
