@@ -1,4 +1,3 @@
-const url = require('url');
 const User = require('../model/users');
 
 const HomeController = {
@@ -21,16 +20,9 @@ const HomeController = {
         username,
         userId,
       };
-      // console.log(req.session);
-      // below is short-term solution until we can properly use express-session
-      res.redirect(
-        url.format({
-          pathname: '/posts',
-          query: req.session.user,
-        })
-      );
+      res.redirect('/posts')
     } catch (error) {
-      console.log('error');
+      console.log(error.message);
     }
   },
 };

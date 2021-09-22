@@ -7,7 +7,6 @@ const url = require('url');
 const PostsController = {
   //  let's change away from req, res as this is old syntax (I think)
   async Index(req, res) {
-    // username and userId to be user for comment and posts
     const posts = await Post.getPosts();
     res.render('posts/index', { posts });
   },
@@ -30,6 +29,8 @@ const PostsController = {
   },
 
   NewComment: async function (req, res) {
+    // Line 32 needs to be used on 34 instead of req.body
+    const { username, userId } = req.session;
     try {
       await Comment.addComment(
         req.body.text,
@@ -42,14 +43,14 @@ const PostsController = {
     }
   },
   NewLike: async function (req, res) {
-    // console.log('our request:', req);
-    // user_id will be defined by session eventually so can change below as required
-    // i.e. req.body.user_id === undefined will check if session id exists or not
     try {
-      if (req.body.post_id === undefined || req.body.user_id === undefined) {
+      if (
+        req.body.post_id === undefined ||
+        req.session.user.userId === undefined
+      ) {
         throw 'Parameters undefined!';
       }
-      await Like.addLike(req.body.post_id, req.body.user_id);
+      await Like.addLike(req.body.post_id, req.session.user.userId);
       res.redirect(302, 'back'); // could use res.redirect('back') as it does the same
     } catch (error) {
       res.redirect(302, 'back');
