@@ -6,6 +6,7 @@ const url = require('url');
 const PostsController = {
   //  let's change away from req, res as this is old syntax (I think)
   async Index(req, res) {
+    console.log("Post page: ", req.session)
     const posts = await Post.getPosts();
     res.render('posts/index', { posts });
   },
