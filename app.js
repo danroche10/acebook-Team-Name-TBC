@@ -24,7 +24,7 @@ app.use(
     secret: 'f4z4gs$Gcg',
     cookie: { maxAge: 300000000 },
     saveUninitialized: false,
-    resave: false,
+    resave: false
   }),
 );
 
