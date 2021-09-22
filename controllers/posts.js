@@ -40,16 +40,19 @@ const PostsController = {
     }
   },
 
-  NewLike: async function (req, res) {
+  async NewLike(req, res) {
     try {
-      if (
-        req.body.post_id === undefined ||
-        req.session.user.user_id === undefined
-      ) {
+      const postId = req.body.post_id;
+      const userId = req.session.user.user_id;
+      if (postId === undefined || userId === undefined) {
         throw 'Parameters undefined!';
       }
-      await Like.addLike(req.body.post_id, req.session.user.user_id);
-      res.redirect(302, 'back'); // could use res.redirect('back') as it does the same
+      const alreadyLiked = await Like.likeExists(postId, userId);
+      if (alreadyLiked === true) {
+        throw 'Already liked by this user!';
+      }
+      await Like.addLike(postId, userId);
+      res.redirect(302, 'back');
     } catch (error) {
       res.redirect(302, 'back');
     }
