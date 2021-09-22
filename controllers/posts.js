@@ -6,7 +6,6 @@ const Comment = require('../model/comments');
 const PostsController = {
   //  let's change away from req, res as this is old syntax (I think)
   async Index(req, res) {
-    // username and userId to be user for comment and posts
     const posts = await Post.getPosts();
     res.render('posts/index', { posts });
   },
@@ -28,6 +27,8 @@ const PostsController = {
   },
 
   NewComment: async function (req, res) {
+    // Line 32 needs to be used on 34 instead of req.body
+    const { username, userId } = req.session;
     try {
       await Comment.addComment(req.body.text, req.body.user_id, req.body.post_id);
       res.redirect(302, 'back')
@@ -36,7 +37,7 @@ const PostsController = {
     }
   },
   async NewLike(req, res) {
-    const { username, userId } = req.query;
+    const { username, userId } = req.session;
     res.json({ info: 'Hello new like post router :)' });
   },
 };
