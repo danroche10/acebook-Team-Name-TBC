@@ -48,7 +48,7 @@ const PostsController = {
       ) {
         throw 'Parameters undefined!';
       }
-      await Like.addLike(req.body.post_id, req.session.user.userId);
+      await Like.addLike(req.body.post_id, req.session.user.user_id);
       res.redirect(302, 'back'); // could use res.redirect('back') as it does the same
     } catch (error) {
       res.redirect(302, 'back');

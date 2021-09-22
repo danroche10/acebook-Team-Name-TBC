@@ -40,3 +40,28 @@ test('check number of likes', async () => {
   let data = await Like.numberOfLikes(1);
   expect(data).toStrictEqual(2);
 });
+
+test('check if user has already liked post - they have', async () => {
+  await pool.query(
+    "INSERT INTO users(username, password, email) VALUES('friartuck', 'Password2', 'test@test.com');"
+  );
+  await pool.query(
+    "INSERT INTO users(username, password, email) VALUES('dandelion', 'Password3', 'test@test.com');"
+  );
+  await pool.query("INSERT INTO posts (text, user_id) VALUES ('Goodbye', 1);");
+  await Like.addLike(1, 2);
+  let data = await Like.likeExists(1, 2);
+  expect(data).toStrictEqual(true);
+});
+
+test('check if user has already liked post - they have not', async () => {
+  await pool.query(
+    "INSERT INTO users(username, password, email) VALUES('friartuck', 'Password2', 'test@test.com');"
+  );
+  await pool.query(
+    "INSERT INTO users(username, password, email) VALUES('dandelion', 'Password3', 'test@test.com');"
+  );
+  await pool.query("INSERT INTO posts (text, user_id) VALUES ('Goodbye', 1);");
+  let data = await Like.likeExists(1, 2);
+  expect(data).toStrictEqual(false);
+});

@@ -25,5 +25,12 @@ class Like {
     );
     return allPostLikes.rows.length;
   }
+
+  static async likeExists(post_id, user_id) {
+    let likeCheck = await connection.pool.query(
+      `SELECT id FROM likes WHERE post_id=${post_id} AND user_id=${user_id};`
+    );
+    return likeCheck.rows.length !== 0 ? true : false;
+  }
 }
 module.exports = Like;
