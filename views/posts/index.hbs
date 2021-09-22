@@ -1,3 +1,24 @@
+<head>
+  <title>{{title}}</title>
+</head>
+<body>
+  <nav class="navbar navbar-expand-lg navbar-light">
+<a class="navbar-brand" href="#">Ace<b>Book</b></a>  		
+<button type="button" class="navbar-toggler" data-toggle="collapse" data-target="#navbarCollapse">
+  <span class="navbar-toggler-icon"></span>
+</button>
+<!-- Collection of nav links, forms, and other content for toggling -->
+<div id="navbarCollapse" class="collapse navbar-collapse justify-content-start">
+  <div class="navbar-nav">
+    <a href="/posts/" class="nav-item nav-link">Home</a>
+    <a href="#" class="nav-item nav-link">Profile</a>			
+    <a href="/" class="nav-item nav-link">Logout</a>
+    <a href="#" class="nav-item nav-link">Contact</a>
+      </div>
+  <div class="navbar-nav ml-auto">
+</div>
+</nav>
+
 <h1>Posts</h1>
 
 <form action='/posts/new' method='POST'>
@@ -7,10 +28,6 @@
     placeholder="What's on your mind?"
     name='text'
   />
-  <!-- temporary workaround till user login -->
-  <input type='number' class='user_id' placeholder='userid' name='user_id' />
-  <!-- temporary workaround till user login -->
-
   <input type='submit' value='Submit' />
 </form>
 

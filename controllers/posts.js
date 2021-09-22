@@ -20,33 +20,31 @@ const PostsController = {
   },
   async New(req, res) {
     try {
-      // temporary workaround till user login - req.body.user_id
-      await Post.addPost(req.body.text, req.body.user_id);
+      await Post.addPost(req.body.text, req.session.user.user_id);
       res.redirect(302, 'back');
     } catch (error) {
-      console.log(error);
+      console.log(error.message);
     }
   },
 
   NewComment: async function (req, res) {
-    // Line 32 needs to be used on 34 instead of req.body
-    const { username, userId } = req.session;
     try {
       await Comment.addComment(
         req.body.text,
-        req.body.user_id,
+        req.session.user.user_id,
         req.body.post_id
       );
       res.redirect(302, 'back');
     } catch (error) {
-      console.log(error);
+      console.log(error.message);
     }
   },
+
   NewLike: async function (req, res) {
     try {
       if (
         req.body.post_id === undefined ||
-        req.session.user.userId === undefined
+        req.session.user.user_id === undefined
       ) {
         throw 'Parameters undefined!';
       }
@@ -57,4 +55,5 @@ const PostsController = {
     }
   },
 };
+
 module.exports = PostsController;
