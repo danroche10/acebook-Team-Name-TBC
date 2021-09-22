@@ -1,7 +1,6 @@
 <h1 class='h1'>Post</h1>
 
 {{#each post}}
-  <div class='single_post' id='{{this.id}}'>{{this.message}}</div>
 
   <form action='id/comment/new' method='POST'>
     <textarea
@@ -20,6 +19,7 @@
     <input type='hidden' value='{{this.id}}' name='post_id' />
     <input type='submit' value='Submit' />
   </form>
+  <div class='single_post' id='{{this.id}}'>{{this.message}}</div>
 {{/each}}
 
 {{#each comments}}

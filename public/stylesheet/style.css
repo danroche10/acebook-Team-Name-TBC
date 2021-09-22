@@ -18,7 +18,7 @@ a {
 div {
   align-items: center;
   display: block;
-  border: 1px solid rgb(156, 130, 25);
+
   padding: 0.5rem 1rem;
   border-radius: 0.25rem 0.25rem 0.25rem;
   background-color: cornsilk;
@@ -26,6 +26,16 @@ div {
 
 div.posts {
   cursor: pointer;
+  border: 1px solid rgb(156, 130, 25);
+}
+
+div.single_post {
+  background-color: rgb(240, 172, 151);
+  border: 1px solid rgb(156, 130, 25);
+}
+
+div.comments {
+  border: 1px solid rgb(156, 130, 25);
 }
 
 ul {
