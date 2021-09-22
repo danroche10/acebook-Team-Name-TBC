@@ -16,7 +16,8 @@ const PostsController = {
     post_id = post_id.split('/')[1];
     const post = await Post.getPostById(post_id);
     const comments = await Comment.getComments(post_id);
-    res.render('posts/id', { post, comments });
+    const likes = await Like.numberOfLikes(post_id);
+    res.render('posts/id', { post, comments, likes });
   },
   async New(req, res) {
     try {

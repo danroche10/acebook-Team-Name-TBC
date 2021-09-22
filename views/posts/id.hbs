@@ -9,9 +9,9 @@
     <input type="text" id="user_id" name="user_id" placeholder ="User ID"><br>
     <!-- can remove above line when user_id session is set up --> 
     <input type="hidden" id="post_id" name="post_id" value="{{this.id}}"><br>
-    <button type="submit" value="Submit">Like</button>
+    <button type="submit" value="Submit">Like {{../likes}}</button> 
   </form>
-
+  
   <form action='id/comment/new' method='POST'>
     <textarea
       style='resize:none'
@@ -34,3 +34,5 @@
 {{#each comments}}
   <div class='comments' id='{{this.id}}'>{{this.comment}}</div>
 {{/each}}
+
+  
