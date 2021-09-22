@@ -22,7 +22,7 @@ const HomeController = {
       };
       res.redirect('/posts')
     } catch (error) {
-      console.log('error');
+      console.log(error.message);
     }
   },
 };
