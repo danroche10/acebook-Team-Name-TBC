@@ -27,13 +27,16 @@ const PostsController = {
   },
 
   NewComment: async function (req, res) {
-    // Line 32 needs to be used on 34 instead of req.body
     const { username, userId } = req.session;
     try {
-      await Comment.addComment(req.body.text, req.body.user_id, req.body.post_id);
-      res.redirect(302, 'back')
+      await Comment.addComment(
+        req.body.text,
+        req.session.user.userId,
+        req.body.post_id
+      );
+      res.redirect(302, 'back');
     } catch (error) {
-      console.log(error)
+      console.log(error);
     }
   },
   async NewLike(req, res) {
