@@ -24,13 +24,7 @@
 <h1 class='h1'>Post</h1>
 
 {{#each post}}
-
-  <!-- like button --> 
-  <form action="/posts/id/like/new" method="post" id="likeButton">
-    <input type="hidden" id="post_id" name="post_id" value="{{this.id}}"><br>
-    <button type="submit" value="Submit">Like {{../likes}}</button> 
-  </form>
-  
+ 
   <form action='id/comment/new' method='POST'>
     <textarea
       style='resize:none'
@@ -45,6 +39,12 @@
     <input type='submit' value='Submit' />
   </form>
   <div class='single_post' id='{{this.id}}'>{{this.message}}</div>
+
+   <!-- like button --> 
+  <form action="/posts/id/like/new" method="post" id="likeButton">
+    <input type="hidden" id="post_id" name="post_id" value="{{this.id}}"><br>
+    <button type="submit" value="Submit">Like {{../likes}}</button> 
+  </form>
 {{/each}}
 
 {{#each comments}}
