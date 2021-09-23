@@ -21,16 +21,20 @@
 
 <h1>Posts</h1>
 
-<form action='/posts/new' method='POST' enctype="multipart/form-data">
-  <input
-    type='text'
-    class='post_text'
-    placeholder="What's on your mind?"
-    name='text'
-  />
-  <input type="file" name="pic">
-  <input type='submit' value='Submit' />
 </form>
+<form action='posts/new' method='POST' enctype="multipart/form-data">
+    <textarea
+      style='resize:none'
+      type='text'
+      class='post_text'
+      placeholder="Type what's on your mind!"
+      name='text'
+      rows='5'
+      cols='40'
+      maxlength='200'
+    ></textarea>
+    <input type="file" name="pic">
+    <input type='submit' value='Submit' />
 
 <ul class='posts_list'>
   {{#each posts}}
@@ -38,7 +42,8 @@
       class='posts'
       id='{{this.id}}'
       onclick="window.location.href='/posts/{{this.id}}'"
-    ><p>{{this.message}}</p></div>
+    ><p>{{this.message}}<img style='display:block; width:100px;height:100px;'
+       src="data:image/jpeg;base64,{{this.image}}"/></p></div>
 
   {{/each}}
 </ul>

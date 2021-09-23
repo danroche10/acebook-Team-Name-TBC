@@ -7,6 +7,19 @@ const PostsController = {
   async Index(req, res) {
     try {
       const posts = await Post.getPosts();
+      const images = await Post.getImages();
+      images.forEach((element) => {
+        posts.forEach((posts) => {
+          // console.log(element.post_id);
+          // console.log(posts.id);
+          if (element.post_id === posts.id) {
+            posts['image'] = element.data.toString('base64');
+          }
+        });
+      });
+      // posts.forEach((element) => {
+      //   console.log(element);
+      // });
       res.render('posts/index', { posts });
     } catch (error) {
       console.log(error.message);

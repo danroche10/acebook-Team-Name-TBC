@@ -10,8 +10,6 @@ class Post {
       allPostsArray.push({
         id: element.id,
         message: element.text,
-        // image: this.getImageById(element.id),
-        //user_id: element.user_id, // have added this for likes function
       });
     });
     return allPostsArray.reverse();
@@ -57,6 +55,18 @@ class Post {
       });
     });
     return allPicsArray;
+  }
+
+  static async getImages() {
+    let allImagesArray = [];
+    let allImages = await connection.pool.query('SELECT * FROM images');
+    allImages.rows.forEach((element) => {
+      allImagesArray.push({
+        data: element.pic,
+        post_id: element.post_id,
+      });
+    });
+    return allImagesArray;
   }
 }
 
