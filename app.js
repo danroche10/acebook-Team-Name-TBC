@@ -25,8 +25,8 @@ app.use(
     secret: 'f4z4gs$Gcg',
     cookie: { maxAge: 300000000 },
     saveUninitialized: false,
-    resave: false
-  }),
+    resave: false,
+  })
 );
 
 // route paths to match excel file
@@ -34,6 +34,6 @@ app.use('/', homeRouter);
 app.use('/posts', postsRouter);
 app.use('/signup', signupRouter);
 
-app.listen(port, () => {
+app.listen(process.env.PORT || port, () => {
   console.log(`App running on port ${port}.`);
 });
