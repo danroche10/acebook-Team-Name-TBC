@@ -26,31 +26,19 @@ const PostsController = {
     try {
       const post = await Post.getPostById(post_id);
       const image = await Post.getImages();
-      console.log(image);
-      console.log(post);
       const comments = await Comment.getComments(post_id);
       const likes = await Like.numberOfLikes(post_id);
-      // if (image === []) {
-      //   res.render('posts/id', { post, comments, likes });
-      // } else {
-      //   let bsSixtyFour = image[0].data.toString('base64');
-      //   // console.log(image[0].data.toString('base64'))
-      //   // console.log(post);
-      //   post[0]['image'] = bsSixtyFour;
       image.forEach((element) => {
         post.forEach((posts) => {
           if (element.post_id === posts.id) {
-            post['image'] = element.data.toString('base64');
+            post[0]['image'] = element.data.toString('base64');
           }
         });
       });
-      console.log(post);
       res.render('posts/id', { post, comments, likes });
-      // }
     } catch (error) {
       console.log(error.message);
     }
-    // console.log(post);
   },
   async New(req, res) {
     let post;
