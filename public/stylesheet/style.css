@@ -1,5 +1,5 @@
 h1 {
-  padding: 60px;
+  padding: 30px;
   text-align: center;
   background: #fff0f5;
   color: #2f4f4f;
@@ -41,6 +41,8 @@ body {
 
 ::placeholder {
   color: #eb5844;
+	text-align: center;
+	padding-top: 30px; 
 }
 a {
   color: #00b7ff;
@@ -50,11 +52,13 @@ textarea {
   display: block;
   margin-left: auto;
   margin-right: auto;
+	margin-top: 20px;
+	margin-bottom: 20px;
+	background: #fff; 
 }
 div {
   align-items: center;
   display: block;
-
   padding: 0.5rem 1rem;
   border-radius: 0.25rem 0.25rem 0.25rem;
   background-color: cornsilk;
@@ -89,7 +93,7 @@ ul {
 }
 
 body {
-  background: #eeeeee;
+  background: #eeeeee; 
   font-family: 'Varela Round', sans-serif;
 }
 .form-inline {
