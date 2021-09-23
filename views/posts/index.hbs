@@ -21,7 +21,7 @@
 
 <h1>Posts</h1>
 
-<form action='/posts/new' method='POST'>
+{{!-- <form action='/posts/new' method='POST'>
   <input
     type='text'
     class='post_text'
@@ -31,7 +31,19 @@
   <p class='submit-button'>
   <input type='submit' value='Submit' />
   <p/>
-</form>
+</form> --}}
+
+<form action='posts/new' method='POST'>
+    <textarea
+      style='resize:none'
+      type='text'
+      class='post_text'
+      placeholder="What's on your mind?"
+      name='text'
+      rows='5'
+      cols='40'
+    ></textarea><br>
+    <input type='submit' value='Submit' />
 
 <ul class='posts_list'>
   {{#each posts}}
