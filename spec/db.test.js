@@ -18,5 +18,7 @@ test('checks test db is accessed', async () => {
     "INSERT INTO users(username, password, email) VALUES('dandelion', 'Password1', 'test@test.com'); INSERT INTO posts(text, created_at, user_id) VALUES('testtesttest', current_timestamp, 1);"
   );
   const data = await Post.getPosts();
-  expect(data).toStrictEqual([{ id: 1, message: 'testtesttest' }]);
+  expect(data[0].id).toStrictEqual(1);
+  expect(data[0].message).toStrictEqual('testtesttest');
+  expect(data[0].name).toStrictEqual('dandelion');
 });

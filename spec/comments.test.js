@@ -21,7 +21,7 @@ test('can add a comment to an existing post', async () => {
   );
   await Comment.addComment('This is a test comment', user_id, post_id);
   const data = await Comment.getComments(post_id);
-  expect(data).toStrictEqual([
-    { id: 1, comment: 'This is a test comment', user_id: 1 },
-  ]);
+  expect(data[0].id).toStrictEqual(1);
+  expect(data[0].comment).toStrictEqual('This is a test comment');
+  expect(data[0].name).toStrictEqual('dandelion');
 });

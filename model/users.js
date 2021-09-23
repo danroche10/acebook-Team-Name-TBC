@@ -35,9 +35,9 @@ class User {
   static async getUser(userId) {
     try {
       const result = await connection.pool.query(
-        `SELECT * FROM users WHERE user_id =${userId}`
+        `SELECT * FROM users WHERE id =${userId}`
       );
-      return result;
+      return result.rows[0].username;
     } catch (error) {
       console.log(error.message);
     }

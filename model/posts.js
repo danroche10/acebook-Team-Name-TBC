@@ -1,4 +1,5 @@
 const connection = require('../database/connection.js');
+const User = require('./users.js');
 
 class Post {
   static async getPosts() {
@@ -6,9 +7,8 @@ class Post {
     let allPosts = await connection.pool.query(
       'SELECT * FROM posts ORDER BY id ASC'
     );
-
     for (const element of allPosts.rows) {
-      const newName = await Post.getUser(element.user_id);
+      const newName = await User.getUser(element.user_id);
       const newTime = new Date(element.created_at);
       allPostsArray.push({
         id: element.id,
@@ -36,7 +36,7 @@ class Post {
       [post_id]
     );
     for (const element of individualPost.rows) {
-      const newName = await Post.getUser(element.user_id);
+      const newName = await User.getUser(element.user_id);
       const newTime = new Date(element.created_at);
       individualPostArray.push({
         id: element.id,
@@ -46,17 +46,6 @@ class Post {
       });
     }
     return individualPostArray;
-  }
-
-  static async getUser(userId) {
-    try {
-      const result = await connection.pool.query(
-        `SELECT * FROM users WHERE id =${userId}`
-      );
-      return result.rows[0].username;
-    } catch (error) {
-      console.log(error.message);
-    }
   }
 }
 

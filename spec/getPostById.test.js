@@ -9,19 +9,18 @@ beforeEach(async () => {
   );
 });
 
-afterEach(() => {
-  pool.end();
+afterAll(async () => {
+  await pool.end();
 });
 
-test('checks a single post is retrieved', async() => {
+test('checks a single post is retrieved', async () => {
   await pool.query(
     "INSERT INTO users(username, password, email) VALUES('dandelion', 'Password1', 'test@test.com');"
-  )
-  await Post.addPost('This is our test retrieving post', 1); 
+  );
+  await Post.addPost('This is our test retrieving post', 1);
   await Post.addPost('This is our second test retrieving post', 1);
-  const post_id = 1 
-  const post = await Post.getPostById(post_id)
-  expect(post).toStrictEqual([
-    {id: 1, message: 'This is our test retrieving post'}])
-})
-
+  const post_id = 1;
+  const post = await Post.getPostById(post_id);
+  expect(post[0].id).toStrictEqual(1);
+  expect(post[0].message).toStrictEqual('This is our test retrieving post');
+});

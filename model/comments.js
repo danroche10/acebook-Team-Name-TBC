@@ -1,4 +1,5 @@
 const connection = require('../database/connection.js');
+const User = require('./users.js');
 
 class Comment {
   static async getComments(post_id) {
@@ -8,7 +9,7 @@ class Comment {
       [post_id]
     );
     for (const element of allComments.rows) {
-      const newName = await this.getUser(element.user_id);
+      const newName = await User.getUser(element.user_id);
       const newTime = new Date(element.created_at);
       allCommentArray.push({
         id: element.id,
@@ -26,17 +27,6 @@ class Comment {
       [text, user_id, post_id]
     );
     return comment;
-  }
-
-  static async getUser(userId) {
-    try {
-      const result = await connection.pool.query(
-        `SELECT * FROM users WHERE id =${userId}`
-      );
-      return result.rows[0].username;
-    } catch (error) {
-      console.log(error.message);
-    }
   }
 }
 

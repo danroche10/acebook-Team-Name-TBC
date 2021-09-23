@@ -8,12 +8,12 @@ beforeEach(async () => {
     'TRUNCATE TABLE users, posts, likes, comments RESTART IDENTITY;'
   );
   await pool.query(
-    "INSERT INTO users(username, password, email) VALUES('dandelion', 'Password1', 'test@test.com');",
+    "INSERT INTO users(username, password, email) VALUES('dandelion', 'Password1', 'test@test.com');"
   );
 });
 
-afterAll(() => {
-  pool.end();
+afterAll(async () => {
+  await pool.end();
 });
 
 test('authenticate', async () => {
