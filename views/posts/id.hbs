@@ -25,26 +25,29 @@
 
 {{#each post}}
  
+  <div class='single_post' id='{{this.id}}'>{{this.message}}</div>
+
+   <!-- like button --> 
+  <form action="/posts/id/like/new" method="post" id="likeButton">
+    <input type="hidden" id="post_id" name="post_id" value="{{this.id}}">
+    <button type="submit" class="centre-button" value="Submit">Like <span style="color:lemonchiffon">&#9829</span> {{../likes}}</button>
+  </form>
+
   <form action='id/comment/new' method='POST'>
     <textarea
       style='resize:none'
       type='text'
       class='comment'
-      placeholder='What do you want to comment?'
+      placeholder='Type your comment here!'
       name='text'
       rows='5'
       cols='40'
+      maxlength='200'
     ></textarea>
     <input type='hidden' value='{{this.id}}' name='post_id' />
-    <input type='submit' value='Submit' />
+    <input type='submit' class='centre-button' value='Submit' />
   </form>
-  <div class='single_post' id='{{this.id}}'>{{this.message}}</div>
-
-   <!-- like button --> 
-  <form action="/posts/id/like/new" method="post" id="likeButton">
-    <input type="hidden" id="post_id" name="post_id" value="{{this.id}}"><br>
-    <button type="submit" value="Submit">Like <span style="color:royalblue; font-size: large;">&#9829</span> {{../likes}}</button>
-  </form>
+  
 {{/each}}
 
 {{#each comments}}
