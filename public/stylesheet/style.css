@@ -6,6 +6,26 @@ h1 {
   font-size: 30px;
 }
 
+input[type=submit] {
+	padding:5px 15px; 
+	background:rgb(243, 98, 31); 
+	color: white;
+	border: none;
+	cursor:grab;
+	-webkit-border-radius: 5px;
+	border-radius: 5px; 
+}
+
+input[type=password],input[type=text], input[type=email]{
+	border-box:rgb(260, 823, 290); 
+	border-radius: 5px; 
+	width: 100%;
+	padding: 12px 20px;
+	margin: 8px 0;
+  display: inline-block;
+  border: 1px solid #ccc;
+  box-sizing: border-box; 
+} 
 body {
   padding: 50px;
   font: 14px 'Lucida Grande', Helvetica, Arial, sans-serif;
