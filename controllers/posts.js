@@ -22,6 +22,8 @@ const PostsController = {
     const bsSixtyFour = image[0].data.toString('base64');
     // console.log(image[0].data.toString('base64'))
     console.log(post);
+    post[0]['image'] = bsSixtyFour;
+    console.log(post);
     res.render('posts/id', { bsSixtyFour, post, comments, likes });
   },
   async New(req, res) {

@@ -22,12 +22,12 @@
 
 
 <h1 class='h1'>Post</h1>
-<p> {{#bsSixtyFour}}
+{{!-- <p> {{#bsSixtyFour}}
    <img style='display:block; width:100px;height:100px;'
        src="data:image/jpeg;base64,{{this}}"/>
 
     <p>Image should be hereish</p>
-    {{/bsSixtyFour}}</p>
+    {{/bsSixtyFour}}</p> --}}
 
 {{#each post}}
  
@@ -46,7 +46,8 @@
   </form>
 
   <div class='single_post' id='{{this.id}}'>
-    {{this.message}}      
+    {{this.message}}         <img style='display:block; width:100px;height:100px;'
+       src="data:image/jpeg;base64,{{this.image}}"/>
   </div>
  
 
