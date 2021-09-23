@@ -7,7 +7,7 @@ h1 {
 }
 
 input[type='submit'],
-button {
+button.centre-button {
   padding: 5px 15px;
   background: rgb(243, 98, 31);
   color: whitesmoke;
@@ -15,9 +15,11 @@ button {
   cursor: grab;
   -webkit-border-radius: 5px;
   border-radius: 5px;
-	display: block;
-	margin-left: auto;
-  margin-right: auto
+  display: block;
+  margin-top: 15px;
+  margin-bottom: 15px;
+  margin-left: auto;
+  margin-right: auto;
 }
 
 input[type='password'],
@@ -45,9 +47,9 @@ a {
 }
 
 textarea {
-	display: block;
-	margin-left: auto;
-  margin-right: auto
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
 }
 div {
   align-items: center;
@@ -62,24 +64,24 @@ div.posts {
   cursor: pointer;
   border: 1px solid rgb(156, 130, 25);
   overflow-wrap: break-word;
-	margin: 10px; 
-	border: 2px solid lightpink;  
-	border-left: 10px solid lightpink;
+  margin: 10px;
+  border: 2px solid lightpink;
+  border-left: 10px solid lightpink;
 }
 
 div.single_post {
-  background-color: rgb(240, 172, 151);
-  /* border: 1px solid rgb(156, 130, 25); */
+  border: 2px solid lightpink;
   overflow-wrap: break-word;
-	border: 2px solid orangered;  
-	border-left: 10px solid orangered;
+  margin: 10px;
+  border-left: 10px solid lightpink;
 }
 
 div.comments {
-  border: 2px solid lightpink;  
+  background-color: rgb(240, 172, 151);
   overflow-wrap: break-word;
-	margin: 10px; 
-	border-left: 10px solid lightpink;
+  border: 2px solid orangered;
+  border-left: 10px solid orangered;
+  margin: 10px;
 }
 
 ul {
