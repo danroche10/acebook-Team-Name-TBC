@@ -4,7 +4,7 @@ class Post {
   static async getPosts() {
     let allPostsArray = [];
     let allPosts = await connection.pool.query(
-      'SELECT * FROM posts ORDER BY id ASC'
+      'SELECT * FROM posts ORDER BY id ASC;'
     );
     allPosts.rows.forEach((element) => {
       allPostsArray.push({
@@ -42,6 +42,20 @@ class Post {
       individualPostArray.push({ id: element.id, message: element.text });
     });
     return individualPostArray;
+  }
+  static async getImageById(post_id) {
+    let allPicsArray = [];
+    let allPics = await connection.pool.query(
+      'SELECT pic, post_id FROM images WHERE post_id = $1',
+      [post_id]
+    );
+    allPics.rows.forEach(element => {
+      allPicsArray.push({
+        data: element.pic,
+        post_id: element.post_id
+      });
+    });
+    return allPicsArray;
   }
 }
 

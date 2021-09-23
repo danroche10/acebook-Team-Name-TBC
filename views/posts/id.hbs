@@ -38,7 +38,11 @@
     <input type='hidden' value='{{this.id}}' name='post_id' />
     <input type='submit' value='Submit' />
   </form>
-  <div class='single_post' id='{{this.id}}'>{{this.message}}</div>
+
+  <div class='single_post' id='{{this.id}}'>
+    {{this.message}} 
+
+  </div>
 
    <!-- like button --> 
   <form action="/posts/id/like/new" method="post" id="likeButton">
@@ -46,7 +50,9 @@
     <button type="submit" value="Submit">Like <span style="color:royalblue; font-size: large;">&#9829</span> {{../likes}}</button>
   </form>
 {{/each}}
-
+    {{#image}}
+    {{this.bsSixtyFour}}
+    {{/image}}
 {{#each comments}}
   <div class='comments' id='{{this.id}}'>{{this.comment}}</div>
 {{/each}}
