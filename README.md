@@ -8,6 +8,7 @@ In `psql` or `TablePlus` run the following query:
 CREATE DATABASE acebook;
 CREATE TABLE users(id SERIAL PRIMARY KEY, username VARCHAR(200), password VARCHAR(200), email VARCHAR(200), photo_url VARCHAR(400) DEFAULT null);
 CREATE TABLE posts(id SERIAL PRIMARY KEY, text VARCHAR(200), created_at TIMESTAMP DEFAULT now(), user_id integer REFERENCES users(id));
+CREATE TABLE images (id SERIAL PRIMARY KEY,name VARCHAR(100), pic BYTEA, post_id INT, CONSTRAINT "images_post_id_fkey" FOREIGN KEY ("post_id") REFERENCES "posts"("id"));
 CREATE TABLE comments(id SERIAL PRIMARY KEY, text VARCHAR(200), post_id integer REFERENCES posts(id), user_id integer REFERENCES users(id), created_at TIMESTAMP DEFAULT now());
 CREATE TABLE likes(id SERIAL PRIMARY KEY, post_id integer REFERENCES posts(id), user_id integer REFERENCES users(id));
 ```
@@ -42,7 +43,7 @@ In `psql` or `TablePlus` run the following query:
 CREATE DATABASE acebook_test;
 CREATE TABLE users(id SERIAL PRIMARY KEY, username VARCHAR(200), password VARCHAR(200), email VARCHAR(200), photo_url VARCHAR(400) DEFAULT null);
 CREATE TABLE posts(id SERIAL PRIMARY KEY, text VARCHAR(200), created_at TIMESTAMP DEFAULT now(), user_id integer REFERENCES users(id));
-CREATE TABLE images (id SERIAL PRIMARY KEY,name VARCHAR(100), pic BYTEA, post_id INT, CONSTRAINT "images_post_id_fkey" FOREIGN KEY ("post_id") REFERENCES "public""posts"("id"));
+CREATE TABLE images (id SERIAL PRIMARY KEY,name VARCHAR(100), pic BYTEA, post_id INT, CONSTRAINT "images_post_id_fkey" FOREIGN KEY ("post_id") REFERENCES "posts"("id"));
 CREATE TABLE comments(id SERIAL PRIMARY KEY, text VARCHAR(200), post_id integer REFERENCES posts(id), user_id integer REFERENCES users(id), created_at TIMESTAMP DEFAULT now());
 CREATE TABLE likes(id SERIAL PRIMARY KEY, post_id integer REFERENCES posts(id), user_id integer REFERENCES users(id));
 ```

@@ -20,11 +20,14 @@ const PostsController = {
     res.render('posts/id', { post, comments, likes });
   },
   async New(req, res) {
+    let post;
+    let post_id;
     try {
-      if (req.files.pic) {
-        await Post.addImage(req.files.pic.name, req.files.pic.data, req.session.user.user_id)
+      post = await Post.addPost(req.body.text, req.session.user.user_id);
+      post_id = post.rows[0].id;
+      if (req.files) {
+        await Post.addImage(req.files.pic.name, req.files.pic.data, post_id);
       }
-      await Post.addPost(req.body.text, req.session.user.user_id);
       res.redirect(302, 'back');
     } catch (error) {
       console.log(error.message);
