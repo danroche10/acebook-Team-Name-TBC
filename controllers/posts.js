@@ -2,14 +2,16 @@ const { request } = require('express');
 const Post = require('../model/posts');
 const Comment = require('../model/comments');
 const Like = require('../model/likes');
-const url = require('url');
-const { kStringMaxLength } = require('buffer');
 
 const PostsController = {
   //  let's change away from req, res as this is old syntax (I think)
   async Index(req, res) {
-    const posts = await Post.getPosts();
-    res.render('posts/index', { posts });
+    try {
+      const posts = await Post.getPosts();
+      res.render('posts/index', { posts });
+    } catch (error) {
+      console.log(error.message);
+    }
   },
   async Show(req, res) {
     post_id = req.url;
@@ -34,7 +36,7 @@ const PostsController = {
     }
   },
 
-  NewComment: async function (req, res) {
+  async NewComment(req, res) {
     try {
       await Comment.addComment(
         req.body.text,

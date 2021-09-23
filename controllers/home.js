@@ -20,10 +20,14 @@ const HomeController = {
         username,
         user_id,
       };
-      res.redirect('/posts')
+      res.redirect('/posts');
     } catch (error) {
       console.log(error.message);
     }
+  },
+  Logout(req, res) {
+    req.session.destroy();
+    res.redirect('/');
   },
 };
 module.exports = HomeController;
