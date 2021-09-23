@@ -2,27 +2,37 @@
   <title>{{title}}</title>
 </head>
 <body>
-  <nav class="navbar navbar-expand-lg navbar-light">
-<a class="navbar-brand" href="#">Ace<b>Book</b></a>  		
-<button type="button" class="navbar-toggler" data-toggle="collapse" data-target="#navbarCollapse">
-  <span class="navbar-toggler-icon"></span>
-</button>
-<!-- Collection of nav links, forms, and other content for toggling -->
-<div id="navbarCollapse" class="collapse navbar-collapse justify-content-start">
-  <div class="navbar-nav">
-    <a href="/signup" class="nav-item nav-link">Sign up</a>
-    <a href="#" class="nav-item nav-link">Contact</a>
+  <section>
+    <nav class="navbar navbar-expand-lg navbar-light">
+      <a class="navbar-brand" href="#">Ace<b>Book</b></a>  		
+      <button type="button" class="navbar-toggler" data-toggle="collapse" data-target="#navbarCollapse">
+      <span class="navbar-toggler-icon"></span>
+      </button>
+    <!-- Collection of nav links, forms, and other content for toggling -->
+    <div id="navbarCollapse" class="collapse navbar-collapse justify-content-start">
+      <div class="navbar-nav">
+        <a href="/signup" class="nav-item nav-link">Sign up</a>
+        <a href="#" class="nav-item nav-link">Contact</a>
       </div>
-  <div class="navbar-nav ml-auto">
-</div>
-</nav>
+    <div class="navbar-nav ml-auto">
+    </div>
+  </nav>
+  </section>
 
-<h1>Welcome to Acebook</h1>
-<form action="/login" method="POST" id="login_form" name="login_form">
-  <br>
-  <input type="text" id="user_name" name="user_name" placeholder="Please enter your username">
-  <br>
-  <input type="password" id="user_password" name="user_password" placeholder = "Please enter your password">
-  <br>
-  <input type="submit" value="Login">
-</form>
+<section class="login_section">
+  <h1 class="section_title">Welcome to Acebook</h1>
+  <form action="/login" method="POST" id="login_form" name="login_form">
+    <ul>
+      <li>
+        <input type="text" id="user_name" name="user_name" placeholder="Please enter your username">
+      </li>
+      <li>
+        <input type="password" id="user_password" name="user_password" placeholder = "Please enter your password">
+      </li>
+      <li>
+        <input type="submit" value="Login">
+      </li>
+    </ul>
+  </form>
+</section>
+
