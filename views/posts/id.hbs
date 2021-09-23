@@ -22,17 +22,19 @@
 
 
 <h1 class='h1'>Post</h1>
-{{!-- <p> {{#bsSixtyFour}}
-   <img style='display:block; width:100px;height:100px;'
-       src="data:image/jpeg;base64,{{this}}"/>
-
-    <p>Image should be hereish</p>
-    {{/bsSixtyFour}}</p> --}}
 
 {{#each post}}
  
-  <div class='single_post' id='{{this.id}}'>{{this.message}}<img style='display:block; width:100px;height:100px;'
-       src="data:image/jpeg;base64,{{this.image}}"/></div>
+  <div class='single_post' id='{{this.id}}'>
+    <ul>
+      <li>
+        {{this.message}}
+      </li>
+      <li>
+        <img src="data:image/jpeg;base64,{{this.image}}" class="image_post"/>
+      </li>
+    </ul>
+  </div>
 
    <!-- like button --> 
   <form action="/posts/id/like/new" method="post" id="likeButton">
