@@ -25,6 +25,14 @@
 
 {{#each post}}
  
+  <div class='single_post' id='{{this.id}}'>{{this.message}}</div>
+
+   <!-- like button --> 
+  <form action="/posts/id/like/new" method="post" id="likeButton">
+    <input type="hidden" id="post_id" name="post_id" value="{{this.id}}"><br>
+    <button type="submit" value="Submit">Like <span style="color:lemonchiffon">&#9829</span> {{../likes}}</button>
+  </form>
+
   <form action='id/comment/new' method='POST'>
     <textarea
       style='resize:none'
@@ -34,17 +42,11 @@
       name='text'
       rows='5'
       cols='40'
-    ></textarea>
-    <input type='hidden' value='{{this.id}}' name='post_id' />
+    ></textarea><br>
+    <input type='hidden' value='{{this.id}}' name='post_id' /><br>
     <input type='submit' value='Submit' />
   </form>
-  <div class='single_post' id='{{this.id}}'>{{this.message}}</div>
-
-   <!-- like button --> 
-  <form action="/posts/id/like/new" method="post" id="likeButton">
-    <input type="hidden" id="post_id" name="post_id" value="{{this.id}}"><br>
-    <button type="submit" value="Submit">Like <span style="color:royalblue; font-size: large;">&#9829</span> {{../likes}}</button>
-  </form>
+  
 {{/each}}
 
 {{#each comments}}
