@@ -1,5 +1,3 @@
-const { request } = require('express');
-const url = require('url');
 const Post = require('../model/posts');
 const Comment = require('../model/comments');
 const Like = require('../model/likes');
@@ -9,6 +7,14 @@ const PostsController = {
   async Index(req, res) {
     try {
       const posts = await Post.getPosts();
+      const images = await Post.getImages();
+      images.forEach((element) => {
+        posts.forEach((posts) => {
+          if (element.post_id === posts.id) {
+            posts['image'] = element.data.toString('base64');
+          }
+        });
+      });
       res.render('posts/index', { posts });
     } catch (error) {
       console.log(error.message);
@@ -18,13 +24,22 @@ const PostsController = {
     post_id = req.url;
     post_id = post_id.split('/')[1];
     const post = await Post.getPostById(post_id);
+    const image = await Post.getImageById(post_id);
     const comments = await Comment.getComments(post_id);
     const likes = await Like.numberOfLikes(post_id);
-    res.render('posts/id', { post, comments, likes });
+    const bsSixtyFour = image[0].data.toString('base64');
+    post[0]['image'] = bsSixtyFour;
+    res.render('posts/id', { bsSixtyFour, post, comments, likes });
   },
   async New(req, res) {
+    let post;
+    let post_id;
     try {
-      await Post.addPost(req.body.text, req.session.user.user_id);
+      post = await Post.addPost(req.body.text, req.session.user.user_id);
+      post_id = post.rows[0].id;
+      if (req.files) {
+        await Post.addImage(req.files.pic.name, req.files.pic.data, post_id);
+      }
       res.redirect(302, 'back');
     } catch (error) {
       console.log(error.message);

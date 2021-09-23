@@ -22,14 +22,21 @@
 
 
 <h1 class='h1'>Post</h1>
+{{!-- <p> {{#bsSixtyFour}}
+   <img style='display:block; width:100px;height:100px;'
+       src="data:image/jpeg;base64,{{this}}"/>
+
+    <p>Image should be hereish</p>
+    {{/bsSixtyFour}}</p> --}}
 
 {{#each post}}
  
-  <div class='single_post' id='{{this.id}}'>
-    {{this.message}} 
-    <br>
-    <em>- Posted by {{this.name}} on {{this.time}}</em>
-  </div>
+
+  <div class='single_post' id='{{this.id}}'>{{this.message}}<img style='display:block; width:100px;height:100px;'
+       src="data:image/jpeg;base64,{{this.image}}"/>
+       <br>
+    <em>- Posted by {{this.name}} on {{this.time}}</em></div>
+
 
    <!-- like button --> 
   <form action="/posts/id/like/new" method="post" id="likeButton">
@@ -49,10 +56,11 @@
       maxlength='200'
     ></textarea>
     <input type='hidden' value='{{this.id}}' name='post_id' />
-    <input type='submit' class='centre-button' value='Submit' />
+     <input type='submit' class='centre-button' value='Submit' />
   </form>
   
 {{/each}}
+
 
 {{#each comments}}
   <div class='comments' id='{{this.id}}'>{{this.comment}}<br>

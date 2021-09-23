@@ -21,7 +21,8 @@
 
 <h1>Posts</h1>
 
-<form action='posts/new' method='POST'>
+</form>
+<form action='posts/new' method='POST' enctype="multipart/form-data">
     <textarea
       style='resize:none'
       type='text'
@@ -32,6 +33,7 @@
       cols='40'
       maxlength='200'
     ></textarea>
+    <input type="file" name="pic">
     <input type='submit' value='Submit' />
 
 <ul class='posts_list'>
@@ -39,10 +41,11 @@
     <div
       class='posts'
       id='{{this.id}}'
-      onclick="window.location.href='/posts/{{this.id}}'"
-    >{{this.message}}
-    <br>
-    <em>- Posted by {{this.name}} on {{this.time}}</em></div>
-
+      onclick="window.location.href='/posts/{{this.id}}'">
+    <p>{{this.message}}{{#if this.image}}<img style='display:block; width:100px;height:100px;'
+       src="data:image/jpeg;base64,{{this.image}}"/>{{/if}}</p>
+       <br>
+    <em>- Posted by {{this.name}} on {{this.time}}</em></div></div>
+       
   {{/each}}
 </ul>
