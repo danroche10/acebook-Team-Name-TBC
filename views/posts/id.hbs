@@ -25,7 +25,11 @@
 
 {{#each post}}
  
-  <div class='single_post' id='{{this.id}}'>{{this.message}}</div>
+  <div class='single_post' id='{{this.id}}'>
+    {{this.message}} 
+    <br>
+    <em>- {{this.time}}</em>
+  </div>
 
    <!-- like button --> 
   <form action="/posts/id/like/new" method="post" id="likeButton">
@@ -51,5 +55,5 @@
 {{/each}}
 
 {{#each comments}}
-  <div class='comments' id='{{this.id}}'>{{this.comment}}</div>
+  <div class='comments' id='{{this.id}}'>{{this.comment}}<br><em>- {{this.time}}</em></div>
 {{/each}}

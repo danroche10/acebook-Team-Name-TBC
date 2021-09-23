@@ -6,13 +6,18 @@ class Post {
     let allPosts = await connection.pool.query(
       'SELECT * FROM posts ORDER BY id ASC'
     );
-    allPosts.rows.forEach((element) => {
+
+    for (const element of allPosts.rows) {
+      const newName = await Post.getUser(element.user_id);
+      const newTime = new Date(element.created_at);
       allPostsArray.push({
         id: element.id,
         message: element.text,
-        //user_id: element.user_id, // have added this for likes function
+        time: newTime.toLocaleString(),
+        name: newName,
       });
-    });
+    }
+
     return allPostsArray.reverse();
   }
 
@@ -25,17 +30,32 @@ class Post {
   }
 
   static async getPostById(post_id) {
-    let individualPostArray = []
+    let individualPostArray = [];
     let individualPost = await connection.pool.query(
-      'SELECT * FROM posts WHERE id = $1',[post_id]
+      'SELECT * FROM posts WHERE id = $1',
+      [post_id]
     );
     individualPost.rows.forEach((element) => {
-      individualPostArray.push({ id: element.id, message: element.text });
+      const newTime = new Date(element.created_at);
+      individualPostArray.push({
+        id: element.id,
+        message: element.text,
+        time: newTime.toLocaleString(),
+      });
     });
-    return individualPostArray
+    return individualPostArray;
+  }
+
+  static async getUser(userId) {
+    try {
+      const result = await connection.pool.query(
+        `SELECT * FROM users WHERE id =${userId}`
+      );
+      return result.rows[0].username;
+    } catch (error) {
+      console.log(error.message);
+    }
   }
 }
-
-
 
 module.exports = Post;

@@ -31,5 +31,16 @@ class User {
       email: result.rows[0].email,
     };
   }
+
+  static async getUser(userId) {
+    try {
+      const result = await connection.pool.query(
+        `SELECT * FROM users WHERE user_id =${userId}`
+      );
+      return result;
+    } catch (error) {
+      console.log(error.message);
+    }
+  }
 }
 module.exports = User;

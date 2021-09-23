@@ -7,14 +7,16 @@ class Comment {
       'SELECT * FROM comments WHERE post_id = $1',
       [post_id]
     );
-    
-    allComments.rows.forEach((element) =>
+
+    allComments.rows.forEach((element) => {
+      const newTime = new Date(element.created_at);
       allCommentArray.push({
         id: element.id,
         comment: element.text,
         user_id: element.user_id,
-      })
-    );
+        time: newTime.toLocaleString(),
+      });
+    });
     return allCommentArray;
   }
 

@@ -40,7 +40,9 @@
       class='posts'
       id='{{this.id}}'
       onclick="window.location.href='/posts/{{this.id}}'"
-    >{{this.message}}</div>
+    >{{this.message}}
+    <br>
+    <em>- Posted by {{this.name}} on {{this.time}}</em></div>
 
   {{/each}}
 </ul>
