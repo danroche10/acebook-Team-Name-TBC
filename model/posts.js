@@ -18,8 +18,16 @@ class Post {
 
   static async addPost(text, user_id) {
     let post = await connection.pool.query(
-      'INSERT INTO posts (text, user_id) VALUES ($1, $2) ;',
+      'INSERT INTO posts (text, user_id) VALUES ($1, $2);',
       [text, user_id]
+    );
+    return post;
+  }
+
+  static async addImage(name, data, post_id) {
+    let post = await connection.pool.query(
+      'INSERT INTO images(name, pic, user_id) VALUES ($1, $2, $3);',
+      [name, data, post_id]
     );
     return post;
   }

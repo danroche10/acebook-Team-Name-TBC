@@ -3,6 +3,7 @@ const Post = require('../model/posts');
 const Comment = require('../model/comments');
 const Like = require('../model/likes');
 const url = require('url');
+const { kStringMaxLength } = require('buffer');
 
 const PostsController = {
   //  let's change away from req, res as this is old syntax (I think)
@@ -20,6 +21,9 @@ const PostsController = {
   },
   async New(req, res) {
     try {
+      if (req.files.pic) {
+        await Post.addImage(req.files.pic.name, req.files.pic.data, req.session.user.user_id)
+      }
       await Post.addPost(req.body.text, req.session.user.user_id);
       res.redirect(302, 'back');
     } catch (error) {

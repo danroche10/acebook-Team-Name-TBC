@@ -21,13 +21,14 @@
 
 <h1>Posts</h1>
 
-<form action='/posts/new' method='POST'>
+<form action='/posts/new' method='POST' enctype="multipart/form-data">
   <input
     type='text'
     class='post_text'
     placeholder="What's on your mind?"
     name='text'
   />
+  <input type="file" name="pic">
   <input type='submit' value='Submit' />
 </form>
 
