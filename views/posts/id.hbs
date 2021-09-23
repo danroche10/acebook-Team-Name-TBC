@@ -28,7 +28,7 @@
   <div class='single_post' id='{{this.id}}'>
     {{this.message}} 
     <br>
-    <em>- {{this.time}}</em>
+    <em>- Posted by {{this.name}} on {{this.time}}</em>
   </div>
 
    <!-- like button --> 
@@ -55,5 +55,6 @@
 {{/each}}
 
 {{#each comments}}
-  <div class='comments' id='{{this.id}}'>{{this.comment}}<br><em>- {{this.time}}</em></div>
+  <div class='comments' id='{{this.id}}'>{{this.comment}}<br>
+  <em>- Posted by {{this.name}} on {{this.time}}</em></div>
 {{/each}}

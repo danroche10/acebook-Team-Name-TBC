@@ -35,14 +35,16 @@ class Post {
       'SELECT * FROM posts WHERE id = $1',
       [post_id]
     );
-    individualPost.rows.forEach((element) => {
+    for (const element of individualPost.rows) {
+      const newName = await Post.getUser(element.user_id);
       const newTime = new Date(element.created_at);
       individualPostArray.push({
         id: element.id,
         message: element.text,
         time: newTime.toLocaleString(),
+        name: newName,
       });
-    });
+    }
     return individualPostArray;
   }
 

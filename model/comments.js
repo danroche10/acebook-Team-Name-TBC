@@ -7,16 +7,16 @@ class Comment {
       'SELECT * FROM comments WHERE post_id = $1',
       [post_id]
     );
-
-    allComments.rows.forEach((element) => {
+    for (const element of allComments.rows) {
+      const newName = await this.getUser(element.user_id);
       const newTime = new Date(element.created_at);
       allCommentArray.push({
         id: element.id,
         comment: element.text,
-        user_id: element.user_id,
+        name: newName,
         time: newTime.toLocaleString(),
       });
-    });
+    }
     return allCommentArray;
   }
 
@@ -26,6 +26,17 @@ class Comment {
       [text, user_id, post_id]
     );
     return comment;
+  }
+
+  static async getUser(userId) {
+    try {
+      const result = await connection.pool.query(
+        `SELECT * FROM users WHERE id =${userId}`
+      );
+      return result.rows[0].username;
+    } catch (error) {
+      console.log(error.message);
+    }
   }
 }
 
