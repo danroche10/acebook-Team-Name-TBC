@@ -22,6 +22,12 @@
 
 
 <h1 class='h1'>Post</h1>
+<p> {{#bsSixtyFour}}
+   <img style='display:block; width:100px;height:100px;'
+       src="data:image/jpeg;base64,{{this}}"/>
+
+    <p>Image should be hereish</p>
+    {{/bsSixtyFour}}</p>
 
 {{#each post}}
  
@@ -40,9 +46,9 @@
   </form>
 
   <div class='single_post' id='{{this.id}}'>
-    {{this.message}} 
-
+    {{this.message}}      
   </div>
+ 
 
    <!-- like button --> 
   <form action="/posts/id/like/new" method="post" id="likeButton">
@@ -50,9 +56,8 @@
     <button type="submit" value="Submit">Like <span style="color:royalblue; font-size: large;">&#9829</span> {{../likes}}</button>
   </form>
 {{/each}}
-    {{#image}}
-    {{this.bsSixtyFour}}
-    {{/image}}
+
+
 {{#each comments}}
   <div class='comments' id='{{this.id}}'>{{this.comment}}</div>
 {{/each}}

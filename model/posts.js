@@ -10,6 +10,7 @@ class Post {
       allPostsArray.push({
         id: element.id,
         message: element.text,
+        // image: this.getImageById(element.id),
         //user_id: element.user_id, // have added this for likes function
       });
     });
@@ -49,10 +50,10 @@ class Post {
       'SELECT pic, post_id FROM images WHERE post_id = $1',
       [post_id]
     );
-    allPics.rows.forEach(element => {
+    allPics.rows.forEach((element) => {
       allPicsArray.push({
         data: element.pic,
-        post_id: element.post_id
+        post_id: element.post_id,
       });
     });
     return allPicsArray;

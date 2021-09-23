@@ -21,6 +21,7 @@ const PostsController = {
     const likes = await Like.numberOfLikes(post_id);
     const bsSixtyFour = image[0].data.toString('base64');
     // console.log(image[0].data.toString('base64'))
+    console.log(post);
     res.render('posts/id', { bsSixtyFour, post, comments, likes });
   },
   async New(req, res) {
