@@ -5,7 +5,7 @@ const Post = require('../model/posts'); // put whatever you are testing here
 // essential to include following before and after functions if your tests involve database connection
 beforeEach(async () => {
   await pool.query(
-    'TRUNCATE TABLE users, posts, likes, comments RESTART IDENTITY;'
+    'TRUNCATE TABLE users, posts, likes, comments, images RESTART IDENTITY;'
   );
 });
 

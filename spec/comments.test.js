@@ -5,7 +5,7 @@ const Comment = require('../model/comments');
 
 beforeEach(async () => {
   await pool.query(
-    'TRUNCATE TABLE users, posts, likes, comments RESTART IDENTITY;'
+    'TRUNCATE TABLE users, posts, likes, comments, images RESTART IDENTITY;'
   );
 });
 
