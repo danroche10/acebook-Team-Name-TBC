@@ -83,7 +83,7 @@ Make sure to use the old `import/export` syntax. Doesn't work at the moment with
 
 ## Running tests with jest
 
-Run `npm test`.
+Run `npm test /spec`.
 
 ## installing Cypress
 
@@ -95,6 +95,8 @@ When writing tests, include `_spec.js` on the end of the test file.
 Store these files in `<project-name>/cypress/integration`.
 
 ### Running tests with Cypress
+
+`npx cypress open`
 
 **IMPORTANT**
 When running cypress tests, make sure you are running your localhost in tandem!
