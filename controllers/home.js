@@ -25,11 +25,8 @@ const HomeController = {
       console.log(error.message);
     }
   },
-  async Logout(req, res) {
-    console.log('1st log', req.session);
-    //res.json({ info: 'Hello logout router!' });
+  Logout(req, res) {
     req.session.destroy();
-    console.log('2nd log', req.session);
     res.redirect('/');
   },
 };
