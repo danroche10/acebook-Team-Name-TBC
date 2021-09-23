@@ -31,6 +31,10 @@ body {
   font: 14px 'Lucida Grande', Helvetica, Arial, sans-serif;
 }
 
+::placeholder {
+  color: #eb5844 ;
+  
+}
 a {
   color: #00b7ff;
 }
