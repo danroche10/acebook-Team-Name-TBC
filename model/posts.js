@@ -8,6 +8,7 @@ class Post {
       'SELECT * FROM posts ORDER BY id ASC'
     );
     for (const element of allPosts.rows) {
+      // this has to be a for loop not a forEach or the await in the following line won't work
       const newName = await User.getUser(element.user_id);
       const newTime = new Date(element.created_at);
       allPostsArray.push({
@@ -36,6 +37,7 @@ class Post {
       [post_id]
     );
     for (const element of individualPost.rows) {
+      // this has to be a for loop not a forEach or the await in the following line won't work
       const newName = await User.getUser(element.user_id);
       const newTime = new Date(element.created_at);
       individualPostArray.push({

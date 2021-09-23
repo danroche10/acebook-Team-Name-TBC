@@ -9,6 +9,7 @@ class Comment {
       [post_id]
     );
     for (const element of allComments.rows) {
+      // this has to be a for loop not a forEach or the await in the following line won't work
       const newName = await User.getUser(element.user_id);
       const newTime = new Date(element.created_at);
       allCommentArray.push({
