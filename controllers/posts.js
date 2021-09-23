@@ -10,16 +10,11 @@ const PostsController = {
       const images = await Post.getImages();
       images.forEach((element) => {
         posts.forEach((posts) => {
-          // console.log(element.post_id);
-          // console.log(posts.id);
           if (element.post_id === posts.id) {
             posts['image'] = element.data.toString('base64');
           }
         });
       });
-      // posts.forEach((element) => {
-      //   console.log(element);
-      // });
       res.render('posts/index', { posts });
     } catch (error) {
       console.log(error.message);
@@ -28,16 +23,34 @@ const PostsController = {
   async Show(req, res) {
     post_id = req.url;
     post_id = post_id.split('/')[1];
-    const post = await Post.getPostById(post_id);
-    const image = await Post.getImageById(post_id);
-    const comments = await Comment.getComments(post_id);
-    const likes = await Like.numberOfLikes(post_id);
-    const bsSixtyFour = image[0].data.toString('base64');
-    // console.log(image[0].data.toString('base64'))
-    console.log(post);
-    post[0]['image'] = bsSixtyFour;
-    console.log(post);
-    res.render('posts/id', { bsSixtyFour, post, comments, likes });
+    try {
+      const post = await Post.getPostById(post_id);
+      const image = await Post.getImages();
+      console.log(image);
+      console.log(post);
+      const comments = await Comment.getComments(post_id);
+      const likes = await Like.numberOfLikes(post_id);
+      // if (image === []) {
+      //   res.render('posts/id', { post, comments, likes });
+      // } else {
+      //   let bsSixtyFour = image[0].data.toString('base64');
+      //   // console.log(image[0].data.toString('base64'))
+      //   // console.log(post);
+      //   post[0]['image'] = bsSixtyFour;
+      image.forEach((element) => {
+        post.forEach((posts) => {
+          if (element.post_id === posts.id) {
+            post['image'] = element.data.toString('base64');
+          }
+        });
+      });
+      console.log(post);
+      res.render('posts/id', { post, comments, likes });
+      // }
+    } catch (error) {
+      console.log(error.message);
+    }
+    // console.log(post);
   },
   async New(req, res) {
     let post;
