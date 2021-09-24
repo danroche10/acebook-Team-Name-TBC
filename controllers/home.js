@@ -9,7 +9,7 @@ const HomeController = {
       const username = req.body.user_name;
       const password = req.body.user_password;
       const isUserAuthenticated = await User.authenticate(username, password);
-      const user_id = isUserAuthenticated.id;
+      const userId = isUserAuthenticated.id;
       if (isUserAuthenticated === false) {
         res.redirect('/');
       }
@@ -18,11 +18,11 @@ const HomeController = {
       // Add the user object below:
       req.session.user = {
         username,
-        user_id,
+        userId,
       };
-      res.redirect('/posts');
+      return res.redirect('/posts');
     } catch (error) {
-      console.log(error.message);
+      return res.status(500).json({ error: error.message });
     }
   },
   Logout(req, res) {
