@@ -10,12 +10,12 @@ const signupController = {
       const password = req.body.newPassword;
       const email = req.body.newEmail;
       const newUser = await User.addUser(username, password, email);
-      const userId = newUser.rows[0].id;
+      const user_id = newUser.rows[0].id;
       req.session.authenticated = true;
       // Add the user object below:
       req.session.user = {
         username,
-        userId,
+        user_id,
       };
       return res.redirect('/posts');
     } catch (error) {
