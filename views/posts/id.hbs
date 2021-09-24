@@ -4,14 +4,14 @@
 </head>
 <body>
   <nav class="navbar navbar-expand-lg navbar-light">
-<a class="navbar-brand" href="#">Ace<b>Book</b></a>  		
+<a class="navbar-brand" href="/">Ace<b>Book</b></a>  		
 <button type="button" class="navbar-toggler" data-toggle="collapse" data-target="#navbarCollapse">
   <span class="navbar-toggler-icon"></span>
 </button>
 <!-- Collection of nav links, forms, and other content for toggling -->
 <div id="navbarCollapse" class="collapse navbar-collapse justify-content-start">
   <div class="navbar-nav">
-    <a href="/posts/" class="nav-item nav-link">Home</a>
+    <a href="/posts" class="nav-item nav-link">Home</a>
     <a href="#" class="nav-item nav-link">Profile</a>			
     <a href="/logout" class="nav-item nav-link">Logout</a>
     <a href="#" class="nav-item nav-link">Contact</a>
@@ -22,18 +22,11 @@
 
 
 <h1 class='h1'>Post</h1>
-{{!-- <p> {{#bsSixtyFour}}
-   <img style='display:block; width:100px;height:100px;'
-       src="data:image/jpeg;base64,{{this}}"/>
-
-    <p>Image should be hereish</p>
-    {{/bsSixtyFour}}</p> --}}
 
 {{#each post}}
  
-
-  <div class='single_post' id='{{this.id}}'>{{this.message}}<img style='display:block; width:100px;height:100px;'
-       src="data:image/jpeg;base64,{{this.image}}"/>
+  <div class='single_post' id='{{this.id}}'>{{this.message}}{{#if this.image}}<img style='display:block; width:100px;height:100px;'
+       src="data:image/jpeg;base64,{{this.image}}"/>{{/if}}</div>
        <br>
     <em>- Posted by {{this.name}} on {{this.time}}</em></div>
 
