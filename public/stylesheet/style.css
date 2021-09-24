@@ -11,12 +11,12 @@
     --fw-reg: 300;
     --fw-bold: 900;
 
-    --clr-light: white;
-    --clr-dark: #2f4f4f;
-    --clr-theme-primary: lightpink;
-    --clr-theme-secondary: #fff0f5;
-		--clr-post-theme-primary: ;
-		--clr-post-theme-secondary: orangered;
+    --clr-light: #EAEDED;
+    --clr-dark: #303030;
+    --clr-theme-primary: orangered;
+    --clr-theme-secondary: #00CED1;
+		--clr-post-theme-primary: #FFFDD0;
+		--clr-post-theme-secondary: #99FFFF;
 
     --fs-h1: 3rem;
     --fs-h2: 2.25;
@@ -31,19 +31,17 @@
 h1 {
   padding: 30px;
   text-align: center;
-  background: var(--clr-theme-secondary);
-  color: var(--clr-dark);
+  background-color: var(--clr-dark);
+  color: var(--clr-theme-primary);
   font-size: var(--fs-h1);
 }
 
 /* general styling begin */
 
 body {
-	background: var(--clr-light);
-	color: var(--clr-dark);
-	margin-top: 4rem;
-	padding: 4rem 0 4rem 0;
-	
+	background-color: var(--clr-light);
+	padding: 4rem 7rem 0 7rem;
+	margin: 1rem 4rem 0 4rem;
 	font-family: var(--ff-primary);
 	font-size: var(--fs-body);
 	line-height: 1.6;
@@ -115,7 +113,6 @@ div {
 
 .posts {
   cursor: pointer;
-  border: 1px solid rgb(156, 130, 25);
   overflow-wrap: break-word;
   margin: 10px;
 	margin-bottom: 2rem;
@@ -135,15 +132,10 @@ div {
 .comments {
   background-color: var(--clr-theme-primary);
   overflow-wrap: break-word;
-  border: 2px solid var(--clr-post-theme-secondary);
-  border-left: 10px solid var(--clr-post-theme-secondary);
+  border: 2px solid var(--clr-theme-primary);
+  border-left: 10px solid var(--clr-theme-primary);
   margin: 10px;
 	box-shadow: var(--bs);
-}
-
-body {
-  background: var(--clr-light); 
-  font-family: var(--ff-primary);
 }
 
 .form-inline {
@@ -152,19 +144,21 @@ body {
 
 .navbar {
 	position: fixed;
-  background: var(--clr-light);
   display: flex;
 	flex-direction: row;
 	width: 100%;
 	top: 0;
 	left: 0;
 	margin: 0;
+	padding: 0;
   box-shadow: var(--bs);
 	text-align: center;
+	background-color: #ffffff;
 }
 
 .nav-link {
 	text-align: center;
+	color: var(--clr-dark);
 	padding: 1em 1.5em;
 	height: 100%;
 	width: 100%;
@@ -172,7 +166,7 @@ body {
 }
 
 .navbar .navbar-brand {
-  color: #555;
+  color: var(--clr-dark);
   padding-left: 0;
   font-size: 20px;
   padding: 0 0 0 1rem;
@@ -180,13 +174,13 @@ body {
 }
 .navbar .navbar-brand b {
   font-weight: bold;
-  color: #eb5844;
+  color: var(--clr-theme-primary);
 }
 .navbar .navbar-nav a:hover,
 .navbar .navbar-nav a:focus {
 	transition: 200ms;
-	background-color: var(--clr-dark);
-  color: #f08373 !important;
+	background-color: var(--clr-dark);;
+  color: var(--clr-theme-primary) !important;
 }
 .navbar .navbar-nav a.active,
 .navbar .navbar-nav a.active:hover {
@@ -222,6 +216,7 @@ body {
 }
 .navbar .nav-item i {
   font-size: 18px;
+	color: var(--clr-dark);
 }
 .navbar .dropdown-item i {
   font-size: 16px;
@@ -289,11 +284,39 @@ img {
 	height: auto;
 }
 
-.comment {
-	display: inline-block;
+.comment_section {
+	text-align: center;
+	margin: 0;
+	padding-left: 30%;
+	width: 100%;
+}
 
+.comments {
+	display: flex;
+	flex-direction: column;
+	justify-content: left;
+	text-align: left;
+	margin: 0;
+	padding: 0 1rem 0 1rem;
+	width: 50%;
+	background-color: var(--clr-post-theme-primary);
 }
 
 .time_stamp {
 	font-size: small;
+}
+
+.back_board {
+	background-color: #ffffff;
+	box-shadow: var(--bs);
+	margin-bottom: 0;
+	padding-bottom: 2rem;
+}
+a {
+	color: var(--clr-dark);
+}
+
+.submit_button:hover {
+	color: var(--clr-theme-primary);
+	background-color: var(--clr-dark);
 }
