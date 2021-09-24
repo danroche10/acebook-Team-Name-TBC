@@ -1,6 +1,9 @@
 {
   "name": "acebook-initial-setup",
   "version": "1.0.0",
+  "engines": {
+    "node": "v12.18.0"
+  },
   "description": "",
   "main": "app.js",
   "scripts": {

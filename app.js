@@ -37,5 +37,5 @@ app.use('/posts', postsRouter);
 app.use('/signup', signupRouter);
 
 app.listen(process.env.PORT || port, () => {
-  console.log(`App running on port ${port}.`);
+  console.log(`App running on port ${process.env.PORT || port}.`);
 });

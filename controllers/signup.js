@@ -6,11 +6,18 @@ const signupController = {
   },
   async NewUser(req, res) {
     try {
-      const { newHandle } = req.body;
-      const { newPassword } = req.body;
-      const { newEmail } = req.body;
-      User.addUser(newHandle, newPassword, newEmail);
-      res.redirect('/posts');
+      const username = req.body.newHandle;
+      const password = req.body.newPassword;
+      const email = req.body.newEmail;
+      const newUser = await User.addUser(username, password, email);
+      const userId = newUser.rows[0].id;
+      req.session.authenticated = true;
+      // Add the user object below:
+      req.session.user = {
+        username,
+        userId,
+      };
+      return res.redirect('/posts');
     } catch (error) {
       return res.status(500).json({ error: error.message });
     }

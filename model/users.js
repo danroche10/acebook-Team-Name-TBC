@@ -1,14 +1,13 @@
 const connection = require('../database/connection.js');
 
 class User {
+  // eslint-disable-next-line consistent-return
   static async addUser(username, password, email) {
     try {
-      await connection.pool.query(
+      return await connection.pool.query(
         'INSERT INTO users(username, password, email) VALUES($1, $2, $3) RETURNING id, username, email;',
         [username, password, email]
       );
-      const user = { username, password, email };
-      return user;
     } catch (error) {
       console.log(error.message);
     }
