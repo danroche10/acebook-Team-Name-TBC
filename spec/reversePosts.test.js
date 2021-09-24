@@ -4,7 +4,7 @@ const Post = require('../model/posts');
 
 beforeEach(async () => {
   await pool.query(
-    'TRUNCATE TABLE users, posts, likes, comments RESTART IDENTITY;'
+    'TRUNCATE TABLE users, posts, likes, comments, images RESTART IDENTITY;'
   );
 });
 
@@ -20,9 +20,7 @@ test('checks if we see most recent posts first', async () => {
     "INSERT INTO posts(text, created_at, user_id) VALUES('test2', current_timestamp, 1) ; INSERT INTO posts(text, created_at, user_id) VALUES('test3', current_timestamp, 1)"
   );
   const data = await Post.getPosts();
-  expect(data).toStrictEqual([
-    { id: 3, message: 'test3' },
-    { id: 2, message: 'test2' },
-    { id: 1, message: 'test1' },
-  ]);
+  expect(data[0].message).toStrictEqual('test3');
+  expect(data[1].message).toStrictEqual('test2');
+  expect(data[2].message).toStrictEqual('test1');
 });

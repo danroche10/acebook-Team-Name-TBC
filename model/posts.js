@@ -1,4 +1,5 @@
 const connection = require('../database/connection.js');
+const User = require('./users.js');
 
 class Post {
   static async getPosts() {
@@ -6,12 +7,18 @@ class Post {
     let allPosts = await connection.pool.query(
       'SELECT * FROM posts ORDER BY id ASC;'
     );
-    allPosts.rows.forEach((element) => {
+    for (const element of allPosts.rows) {
+      // this has to be a for loop not a forEach or the await in the following line won't work
+      const newName = await User.getUser(element.user_id);
+      const newTime = new Date(element.created_at);
       allPostsArray.push({
         id: element.id,
         message: element.text,
+        time: newTime.toLocaleString(),
+        name: newName,
       });
-    });
+    }
+
     return allPostsArray.reverse();
   }
 
@@ -37,11 +44,20 @@ class Post {
       'SELECT * FROM posts WHERE id = $1',
       [post_id]
     );
-    individualPost.rows.forEach((element) => {
-      individualPostArray.push({ id: element.id, message: element.text });
-    });
+    for (const element of individualPost.rows) {
+      // this has to be a for loop not a forEach or the await in the following line won't work
+      const newName = await User.getUser(element.user_id);
+      const newTime = new Date(element.created_at);
+      individualPostArray.push({
+        id: element.id,
+        message: element.text,
+        time: newTime.toLocaleString(),
+        name: newName,
+      });
+    }
     return individualPostArray;
   }
+
   static async getImageById(post_id) {
     let allPicsArray = [];
     let allPics = await connection.pool.query(

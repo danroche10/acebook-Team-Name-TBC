@@ -1,4 +1,5 @@
 const connection = require('../database/connection.js');
+const User = require('./users.js');
 
 class Comment {
   static async getComments(post_id) {
@@ -7,14 +8,17 @@ class Comment {
       'SELECT * FROM comments WHERE post_id = $1',
       [post_id]
     );
-    
-    allComments.rows.forEach((element) =>
+    for (const element of allComments.rows) {
+      // this has to be a for loop not a forEach or the await in the following line won't work
+      const newName = await User.getUser(element.user_id);
+      const newTime = new Date(element.created_at);
       allCommentArray.push({
         id: element.id,
         comment: element.text,
-        user_id: element.user_id,
-      })
-    );
+        name: newName,
+        time: newTime.toLocaleString(),
+      });
+    }
     return allCommentArray;
   }
 
