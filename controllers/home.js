@@ -6,9 +6,9 @@ const HomeController = {
   },
   async Login(req, res) {
     try {
-      const username = req.body.user_name;
+      const { user_name } = req.body;
       const password = req.body.user_password;
-      const isUserAuthenticated = await User.authenticate(username, password);
+      const isUserAuthenticated = await User.authenticate(user_name, password);
       const userId = isUserAuthenticated.id;
       if (isUserAuthenticated === false) {
         res.redirect('/');
@@ -17,7 +17,7 @@ const HomeController = {
       req.session.authenticated = true;
       // Add the user object below:
       req.session.user = {
-        username,
+        user_name,
         userId,
       };
       return res.redirect('/posts');
