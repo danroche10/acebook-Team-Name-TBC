@@ -42,7 +42,8 @@ body {
 	background: var(--clr-light);
 	color: var(--clr-dark);
 	margin-top: 4rem;
-	padding-top: 4rem;
+	padding: 4rem 0 4rem 0;
+	
 	font-family: var(--ff-primary);
 	font-size: var(--fs-body);
 	line-height: 1.6;
@@ -286,4 +287,9 @@ img {
 	margin-right: auto;
 	width: 50%;
 	height: auto;
+}
+
+.comment {
+	display: inline-block;
+
 }

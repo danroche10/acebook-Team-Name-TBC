@@ -74,14 +74,16 @@
 
 <section class="comment_section">
   {{#each comments}}
+  <div class="comment">
     <ul>
       <li>
           <h2 class='comments' id='{{this.id}}'>
-            <li>{{this.comment}}</li>
+            <li><h3>{{this.comment}}</h3></li>
             <li><em>- Posted by {{this.name}} on {{this.time}}</em></li>
           </h2>
       </li>
     </ul>
+  </div>
   {{/each}}
 </section>
 
