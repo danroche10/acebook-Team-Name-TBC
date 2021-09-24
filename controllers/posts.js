@@ -11,7 +11,7 @@ const PostsController = {
       images.forEach((element) => {
         posts.forEach((posts) => {
           if (element.post_id === posts.id) {
-            posts['image'] = element.data.toString('base64');
+            posts.image = element.data.toString('base64');
           }
         });
       });
@@ -28,14 +28,19 @@ const PostsController = {
     const comments = await Comment.getComments(post_id);
     const likes = await Like.numberOfLikes(post_id);
     const bsSixtyFour = image[0].data.toString('base64');
-    post[0]['image'] = bsSixtyFour;
-    res.render('posts/id', { bsSixtyFour, post, comments, likes });
+    post[0].image = bsSixtyFour;
+    res.render('posts/id', {
+      bsSixtyFour,
+      post,
+      comments,
+      likes,
+    });
   },
   async New(req, res) {
     let post;
     let post_id;
     try {
-      post = await Post.addPost(req.body.text, req.session.user.user_id);
+      post = await Post.addPost(req.body.text, req.session.user.userId);
       post_id = post.rows[0].id;
       if (req.files) {
         await Post.addImage(req.files.pic.name, req.files.pic.data, post_id);
