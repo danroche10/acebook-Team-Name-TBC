@@ -51,17 +51,18 @@
         id='{{this.id}}'
         onclick="window.location.href='/posts/{{this.id}}'"
         >
-          <p>
-            <h2 class="post_text">{{this.message}}</h2>
-            {{#if this.image}}
-              <img src="data:image/jpeg;base64,{{this.image}}"/>
-            {{/if}}
-          </p>
-        </div>
+        <p>
+          <h2 class="post_text">{{this.message}}</h2>
+          {{#if this.image}}
+            <img src="data:image/jpeg;base64,{{this.image}}"/>
+          {{/if}}
+          <em>- Posted by {{this.name}} on {{this.time}}</em>
+        </p>
       </li>
-
+    </div>
     {{/each}}
   </ul>
 </section>
 
 <!-- Posts display section ends -->
+

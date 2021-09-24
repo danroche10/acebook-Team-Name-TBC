@@ -25,6 +25,8 @@
   <h1 class="section_title">Post</h1>
 
   {{#each post}}
+
+   <!-- like button --> 
   
     <div class='single_post' id='{{this.id}}'>
       <ul>
@@ -35,6 +37,9 @@
         </li>
         <li>
           <img src="data:image/jpeg;base64,{{this.image}}"/>
+        </li>
+        <li>
+          <em>- Posted by {{this.name}} on {{this.time}}</em></div>
         </li>
       </ul>
     </div>
@@ -69,11 +74,14 @@
 
 <section class="comment_section">
   {{#each comments}}
-  <ul>
-    <li>
-      <div class='comments' id='{{this.id}}'>{{this.comment}}</div>
-    </li>
-  </ul>
+    <ul>
+      <li>
+          <h2 class='comments' id='{{this.id}}'>
+            <li>{{this.comment}}</li>
+            <li><em>- Posted by {{this.name}} on {{this.time}}</em></li>
+          </h2>
+      </li>
+    </ul>
   {{/each}}
 </section>
 
