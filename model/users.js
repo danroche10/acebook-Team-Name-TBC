@@ -35,7 +35,7 @@ class User {
   static async getUser(userId) {
     try {
       const result = await connection.pool.query(
-        `SELECT * FROM users WHERE id =${userId}`
+        `SELECT username FROM users WHERE id =${userId}`
       );
       return result.rows[0].username;
     } catch (error) {
