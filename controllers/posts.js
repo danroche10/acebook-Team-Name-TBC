@@ -10,16 +10,11 @@ const PostsController = {
       const images = await Post.getImages();
       images.forEach((element) => {
         posts.forEach((posts) => {
-          // console.log(element.post_id);
-          // console.log(posts.id);
           if (element.post_id === posts.id) {
             posts['image'] = element.data.toString('base64');
           }
         });
       });
-      // posts.forEach((element) => {
-      //   console.log(element);
-      // });
       res.render('posts/index', { posts });
     } catch (error) {
       console.log(error.message);
@@ -33,10 +28,7 @@ const PostsController = {
     const comments = await Comment.getComments(post_id);
     const likes = await Like.numberOfLikes(post_id);
     const bsSixtyFour = image[0].data.toString('base64');
-    // console.log(image[0].data.toString('base64'))
-    console.log(post);
     post[0]['image'] = bsSixtyFour;
-    console.log(post);
     res.render('posts/id', { bsSixtyFour, post, comments, likes });
   },
   async New(req, res) {

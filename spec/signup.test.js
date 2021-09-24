@@ -4,18 +4,17 @@ const User = require('../model/users');
 // essential to include following before and after functions if your tests involve database connection
 beforeEach(async () => {
   await pool.query(
-    'TRUNCATE TABLE users, posts, likes, comments RESTART IDENTITY;'
+    'TRUNCATE TABLE users, posts, likes, comments, images RESTART IDENTITY;'
   );
 });
 
-afterEach(() => {
-  pool.end();
+afterAll(async () => {
+  await pool.end();
 });
 
-test('signup', () => {
-  expect(User.addUser('sonic', 'makers', 'sonic@example.com')).toStrictEqual({
-    username: 'sonic',
-    password: 'makers',
-    email: 'sonic@example.com',
-  });
+test('signup', async () => {
+  data = await User.addUser('sonic', 'makers', 'sonic@example.com');
+  expect(data.username).toStrictEqual('sonic');
+  expect(data.password).toStrictEqual('makers');
+  expect(data.email).toStrictEqual('sonic@example.com');
 });
