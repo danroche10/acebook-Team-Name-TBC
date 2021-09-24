@@ -11,7 +11,7 @@ const PostsController = {
       images.forEach((element) => {
         posts.forEach((posts) => {
           if (element.post_id === posts.id) {
-            posts.image = element.data.toString('base64');
+            posts['image'] = element.data.toString('base64');
           }
         });
       });
@@ -23,24 +23,28 @@ const PostsController = {
   async Show(req, res) {
     post_id = req.url;
     post_id = post_id.split('/')[1];
-    const post = await Post.getPostById(post_id);
-    const image = await Post.getImageById(post_id);
-    const comments = await Comment.getComments(post_id);
-    const likes = await Like.numberOfLikes(post_id);
-    const bsSixtyFour = image[0].data.toString('base64');
-    post[0].image = bsSixtyFour;
-    res.render('posts/id', {
-      bsSixtyFour,
-      post,
-      comments,
-      likes,
-    });
+    try {
+      const post = await Post.getPostById(post_id);
+      const image = await Post.getImages();
+      const comments = await Comment.getComments(post_id);
+      const likes = await Like.numberOfLikes(post_id);
+      image.forEach((element) => {
+        post.forEach((posts) => {
+          if (element.post_id === posts.id) {
+            post[0]['image'] = element.data.toString('base64');
+          }
+        });
+      });
+      res.render('posts/id', { post, comments, likes });
+    } catch (error) {
+      console.log(error.message);
+    }
   },
   async New(req, res) {
     let post;
     let post_id;
     try {
-      post = await Post.addPost(req.body.text, req.session.user.userId);
+      post = await Post.addPost(req.body.text, req.session.user.user_id);
       post_id = post.rows[0].id;
       if (req.files) {
         await Post.addImage(req.files.pic.name, req.files.pic.data, post_id);
@@ -84,3 +88,4 @@ const PostsController = {
 };
 
 module.exports = PostsController;
+
