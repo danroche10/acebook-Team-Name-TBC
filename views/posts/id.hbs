@@ -1,8 +1,8 @@
-
 <head>
   <title>{{title}}</title>
 </head>
 <body>
+
   <nav class="navbar navbar-expand-lg navbar-light">
 <a class="navbar-brand" href="/">Ace<b>Book</b></a>  		
 <button type="button" class="navbar-toggler" data-toggle="collapse" data-target="#navbarCollapse">
@@ -11,51 +11,78 @@
 <!-- Collection of nav links, forms, and other content for toggling -->
 <div id="navbarCollapse" class="collapse navbar-collapse justify-content-start">
   <div class="navbar-nav">
-    <a href="/posts" class="nav-item nav-link">Home</a>
-    <a href="#" class="nav-item nav-link">Profile</a>			
+    <a href="/posts" class="nav-item nav-link">Home</a>		
     <a href="/logout" class="nav-item nav-link">Logout</a>
-    <a href="#" class="nav-item nav-link">Contact</a>
       </div>
   <div class="navbar-nav ml-auto">
 </div>
 </nav>
 
+<!-- Individual post section begins -->
+<section class="individual_post_section">
+  <h1 class="section_title">Post</h1>
 
-<h1 class='h1'>Post</h1>
-
-{{#each post}}
- 
-  <div class='single_post' id='{{this.id}}'>{{this.message}}{{#if this.image}}<img style='display:block; width:100px;height:100px;'
-       src="data:image/jpeg;base64,{{this.image}}"/>{{/if}}</div>
-       <br>
-    <em>- Posted by {{this.name}} on {{this.time}}</em></div>
-
+  {{#each post}}
 
    <!-- like button --> 
-  <form action="/posts/id/like/new" method="post" id="likeButton">
-    <input type="hidden" id="post_id" name="post_id" value="{{this.id}}">
-    <button type="submit" class="centre-button" value="Submit">Like <span style="color:lemonchiffon">&#9829</span> {{../likes}}</button>
-  </form>
-
-  <form action='id/comment/new' method='POST'>
-    <textarea
-      style='resize:none'
-      type='text'
-      class='comment'
-      placeholder='Type your comment here!'
-      name='text'
-      rows='5'
-      cols='40'
-      maxlength='200'
-    ></textarea>
-    <input type='hidden' value='{{this.id}}' name='post_id' />
-     <input type='submit' class='centre-button' value='Submit' />
-  </form>
   
-{{/each}}
+    <div class='single_post' id='{{this.id}}'>
+      <ul>
+        <li>
+          <h2 class="post_text">
+            {{this.message}}
+          </h2>
+        </li>
+        {{#if this.image}}
+        <li>
+          <img src="data:image/jpeg;base64,{{this.image}}"/>
+        </li>
+        {{/if}}
+        <li>
+          <em>- Posted by {{this.name}} on {{this.time}}</em></div>
+        </li>
+      </ul>
+    </div>
 
+    <!-- like button --> 
+    <form action="/posts/id/like/new" method="post" id="likeButton">
+      <input type="hidden" id="post_id" name="post_id" value="{{this.id}}">
+      <button type="submit" class="centre-button" value="Submit">Like <span style="color:lemonchiffon">&#9829</span> {{../likes}}</button>
+    </form>
 
-{{#each comments}}
-  <div class='comments' id='{{this.id}}'>{{this.comment}}<br>
-  <em>- Posted by {{this.name}} on {{this.time}}</em></div>
-{{/each}}
+    <form action='id/comment/new' method='POST'>
+      <textarea
+        style='resize:none'
+        type='text'
+        class='comment'
+        placeholder='Type your comment here!'
+        name='text'
+        rows='5'
+        cols='40'
+        maxlength='200'
+      ></textarea>
+      <input type='hidden' value='{{this.id}}' name='post_id' />
+      <input type='submit' class='centre-button' value='Submit' />
+    </form>
+    
+  {{/each}}
+</section>
+
+<!-- Individual post section ends -->
+
+<!-- Comments section begins -->
+
+<section class="comment_section">
+  {{#each comments}}
+    <ul>
+      <li>
+          <h2 class='comments' id='{{this.id}}'>
+            <li><h3>{{this.comment}}</h3></li>
+            <li><em class="time_stamp">- Posted by {{this.name}} on {{this.time}}</em></li>
+          </h2>
+      </li>
+    </ul>
+  {{/each}}
+</section>
+
+<!-- Comments section begins -->

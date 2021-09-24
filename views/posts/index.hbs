@@ -10,19 +10,18 @@
 <!-- Collection of nav links, forms, and other content for toggling -->
 <div id="navbarCollapse" class="collapse navbar-collapse justify-content-start">
   <div class="navbar-nav">
-    <a href="/posts" class="nav-item nav-link">Home</a>
-    <a href="#" class="nav-item nav-link">Profile</a>			
+    <a href="/posts" class="nav-item nav-link">Home</a>		
     <a href="/logout" class="nav-item nav-link">Logout</a>
-    <a href="#" class="nav-item nav-link">Contact</a>
       </div>
   <div class="navbar-nav ml-auto">
 </div>
 </nav>
 
-<h1>Posts</h1>
+<!-- Posts form section begins -->
 
-</form>
-<form action='posts/new' method='POST' enctype="multipart/form-data">
+<section class='form_section'>
+  <h1 class="section_title">Posts</h1>
+  <form action='posts/new' method='POST' enctype="multipart/form-data">
     <textarea
       style='resize:none'
       type='text'
@@ -35,17 +34,33 @@
     ></textarea>
     <input type="file" name="pic">
     <input type='submit' value='Submit' />
+  </form>
+</section>
 
-<ul class='posts_list'>
-  {{#each posts}}
-    <div
-      class='posts'
-      id='{{this.id}}'
-      onclick="window.location.href='/posts/{{this.id}}'">
-    <p>{{this.message}}{{#if this.image}}<img style='display:block; width:100px;height:100px;'
-       src="data:image/jpeg;base64,{{this.image}}"/>{{/if}}</p>
-       <br>
-    <em>- Posted by {{this.name}} on {{this.time}}</em></div></div>
-       
-  {{/each}}
-</ul>
+<!-- Posts form section ends -->
+
+<!-- Posts display section begins -->
+<section class='posts_section'>
+  <ul class='posts_list'>
+    {{#each posts}}
+      <li>
+        <div
+        class='posts'
+        id='{{this.id}}'
+        onclick="window.location.href='/posts/{{this.id}}'"
+        >
+        <p>
+          <h2 class="post_text">{{this.message}}</h2>
+          {{#if this.image}}
+            <img src="data:image/jpeg;base64,{{this.image}}"/>
+          {{/if}}
+          <em>- Posted by {{this.name}} on {{this.time}}</em>
+        </p>
+      </li>
+    </div>
+    {{/each}}
+  </ul>
+</section>
+
+<!-- Posts display section ends -->
+
