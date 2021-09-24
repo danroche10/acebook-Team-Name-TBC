@@ -33,9 +33,11 @@
             {{this.message}}
           </h2>
         </li>
+        {{#if this.image}}
         <li>
           <img src="data:image/jpeg;base64,{{this.image}}"/>
         </li>
+        {{/if}}
         <li>
           <em>- Posted by {{this.name}} on {{this.time}}</em></div>
         </li>
