@@ -27,6 +27,9 @@
  
   <div class='single_post' id='{{this.id}}'>{{this.message}}{{#if this.image}}<img style='display:block; width:100px;height:100px;'
        src="data:image/jpeg;base64,{{this.image}}"/>{{/if}}</div>
+       <br>
+    <em>- Posted by {{this.name}} on {{this.time}}</em></div>
+
 
    <!-- like button --> 
   <form action="/posts/id/like/new" method="post" id="likeButton">
@@ -53,5 +56,6 @@
 
 
 {{#each comments}}
-  <div class='comments' id='{{this.id}}'>{{this.comment}}</div>
+  <div class='comments' id='{{this.id}}'>{{this.comment}}<br>
+  <em>- Posted by {{this.name}} on {{this.time}}</em></div>
 {{/each}}

@@ -41,9 +41,11 @@
     <div
       class='posts'
       id='{{this.id}}'
-      onclick="window.location.href='/posts/{{this.id}}'"
-    ><p>{{this.message}}{{#if this.image}}<img style='display:block; width:100px;height:100px;'
-       src="data:image/jpeg;base64,{{this.image}}"/>{{/if}}</p></div>
-
+      onclick="window.location.href='/posts/{{this.id}}'">
+    <p>{{this.message}}{{#if this.image}}<img style='display:block; width:100px;height:100px;'
+       src="data:image/jpeg;base64,{{this.image}}"/>{{/if}}</p>
+       <br>
+    <em>- Posted by {{this.name}} on {{this.time}}</em></div></div>
+       
   {{/each}}
 </ul>

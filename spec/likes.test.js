@@ -3,7 +3,7 @@ const Like = require('../model/likes');
 
 beforeEach(async () => {
   await pool.query(
-    'TRUNCATE TABLE users, posts, likes, comments RESTART IDENTITY;'
+    'TRUNCATE TABLE users, posts, likes, comments, images RESTART IDENTITY;'
   );
 });
 
