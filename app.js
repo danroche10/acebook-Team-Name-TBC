@@ -1,6 +1,7 @@
 require('dotenv').config();
 
 const express = require('express');
+const fileUpload = require('express-fileUpload');
 
 const app = express();
 const path = require('path');
@@ -19,6 +20,7 @@ app.set('view engine', 'hbs');
 app.use(express.static(path.join(__dirname, 'public')));
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
+app.use(fileUpload());
 
 app.use(
   session({
